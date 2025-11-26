@@ -4,11 +4,14 @@ function enableCardTilt() {
     const supportsDeviceOrientation = window.DeviceOrientationEvent;
     
     function updateShimmer(rotateX, rotateY) {
-        const shimmerX = (0.5 - (rotateY / maxRotate / 2)) * 100; 
-        const shimmerY = (0.5 - (rotateX / maxRotate / 2)) * 100; 
+        const shimmerTranslateX = (rotateY / maxRotate) * 50; 
+        const shimmerTranslateY = (rotateX / maxRotate) * 50; 
 
-        bioCard.style.setProperty('--shimmer-x', `${shimmerX}%`);
-        bioCard.style.setProperty('--shimmer-y', `${shimmerY}%`);
+        const shimmerRotate = -rotateY * 0.5 + rotateX * 0.5;
+
+        bioCard.style.setProperty('--shimmer-x', `${shimmerTranslateX}%`);
+        bioCard.style.setProperty('--shimmer-y', `${shimmerTranslateY}%`);
+        bioCard.style.setProperty('--shimmer-rotate', `${shimmerRotate}deg`);
     }
 
     if (isTouchDevice && supportsDeviceOrientation) {
@@ -45,8 +48,9 @@ function enableCardTilt() {
         bioCard.addEventListener('mouseleave', () => {
             bioCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
             
-            bioCard.style.setProperty('--shimmer-x', `50%`);
-            bioCard.style.setProperty('--shimmer-y', `50%`);
+            bioCard.style.setProperty('--shimmer-x', `0%`);
+            bioCard.style.setProperty('--shimmer-y', `0%`);
+            bioCard.style.setProperty('--shimmer-rotate', `0deg`);
         });
     }
 }
