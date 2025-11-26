@@ -108,10 +108,10 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     /* ⬇️ ปรับค่าให้แถบแสงยาวขึ้น (20% และ 80%) ⬇️ */
     background: linear-gradient(
         45deg, 
-        transparent 20%, /* เริ่มใสเร็วขึ้น */
+        transparent 50%, /* เริ่มใสเร็วขึ้น */
         rgba(255, 255, 255, 0.5) 48%, 
         rgba(255, 255, 255, 0.2) 52%,
-        transparent 80% /* สิ้นสุดใสช้าลง */
+        transparent 0% /* สิ้นสุดใสช้าลง */
     );
     transform: translate(var(--shimmer-x), var(--shimmer-y));
     transform-origin: center center;
@@ -596,3 +596,4 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         display: flex !important;
     }
 }
+
