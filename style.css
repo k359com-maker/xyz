@@ -75,8 +75,9 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .container { display:flex; justify-content:center; align-items:center; height:100vh; padding:20px; }
 
 .bio-card {
-    --shimmer-x: 50%;
-    --shimmer-y: 50%;
+    --shimmer-x: 0%; 
+    --shimmer-y: 0%; 
+    --shimmer-rotate: 0deg; 
     position: relative;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.096);
@@ -104,13 +105,16 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     height: 100%;
     pointer-events: none;
     z-index: 100;
-    background: radial-gradient(
-        circle at var(--shimmer-x) var(--shimmer-y), 
-        rgba(255, 255, 255, 0.45) 0%,
-        rgba(255, 255, 255, 0.05) 15%,
-        transparent 70%
+    background: linear-gradient(
+        var(--shimmer-rotate), 
+        transparent 20%,
+        rgba(255, 255, 255, 0.4) 45%, 
+        rgba(255, 255, 255, 0.2) 55%,
+        transparent 80%
     );
-    transition: background 0.1s ease-out;
+    transform: translate(var(--shimmer-x), var(--shimmer-y));
+    transform-origin: center center;
+    transition: transform 0.1s ease-out, background 0.1s ease-out;
 }
 
 .bio-card.visible { opacity: 1; }
