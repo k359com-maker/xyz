@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solaraxx</title> 
+    <title>Solaraxx</title>
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JXD8ZRQ9C"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-4JXD8ZRQ9C'); 
+      gtag('config', 'G-4JXD8ZRQ9C');
     </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        
+        .overlay {
+            pointer-events: none !important;
+        }
+
+        #clickOverlay {
+            z-index: 9999 !important;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+
     <div id="particles-js"></div>
     <div id="footer-credit">© 2025 Solara-X Designer & Developer by Ren</div>
 
@@ -28,29 +42,33 @@
         <source src="media/241b2634-d1f5-4ac5-a7df-6d6181e7cae7.mp3" type="audio/mpeg">
     </audio>
 
+   
     <div class="overlay"></div>
+
+   
     <div class="click-overlay" id="clickOverlay">Click <3</div>
     
     <button class="mute-btn" id="muteBtn">
         <i class="fas fa-volume-mute"></i>
     </button>
-    
+
     <div class="container">
         <div class="bio-card" id="bioCard">
             <div class="card-header">
                 <div class="profile-pic-container">
                     <img src="media/f9358696-de9d-4c3e-ae73-ad59948e7150.jpg" alt="Photo de profil" class="profile-pic">
                 </div>
+
                 <div class="user-details">
-                    <div class="name">Solaraxx</div> 
-                    <div class="description" id="typingText"></div> 
+                    <div class="name">Solaraxx</div>
+                    <div class="description" id="typingText"></div>
                     <div class="joined-date">Familiar with Lua | CPP</div>
                 </div>
+
                 <div class="discord-status-container">
-                    <div id="discord-activity-widget">
-                    </div>
+                    <div id="discord-activity-widget"></div>
                 </div>
-            </div> 
+            </div>
             
             <hr class="card-divider">
 
@@ -58,13 +76,13 @@
                 <div class="location-info">
                     <i class="fas fa-globe-asia"></i> Bangkok | TH
                 </div>
-                <div class="hit-counter-container"> 
-                    <i class="fas fa-eye hit-counter-icon"></i> 
+                <div class="hit-counter-container">
+                    <i class="fas fa-eye hit-counter-icon"></i>
                     <div class="hit-counter-number">
                         <span id="count">---</span>
                     </div>
                 </div>
-                </div>
+            </div>
 
             <div class="card-footer">
                 <div class="social-icons">
@@ -78,10 +96,11 @@
         </div>
     </div>
 
-    <script src="particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="js/constants.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/discord.js"></script>
     <script src="js/main.js"></script>
+
 </body>
 </html>
