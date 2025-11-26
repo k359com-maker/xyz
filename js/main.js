@@ -20,11 +20,10 @@ async function loadViewers() {
     try {
         const res = await fetch(VIEWER_API);
         const data = await res.json();
-        const viewCount = data.view; // ดึงค่าตัวเลขจาก API (ซึ่งตอนนี้ส่งคีย์ "view" มา)
+        const viewCount = data.view; 
 
         const countElement = document.getElementById("count");
         if (countElement) {
-            // แก้ไข: ถ้าค่าที่ได้เป็น 0 หรือ null ให้แสดงเป็น '1' แทน '0'
             countElement.innerText = (viewCount === 0 || !viewCount) ? '1' : viewCount; 
         }
 
@@ -99,7 +98,6 @@ clickOverlay.addEventListener('click', () => {
         let delay = 0;
         const interval = 120;
         
-        // จัดเรียงใหม่: locationInfoWrapper (View Counter) โผล่เป็นอันที่สอง
         [avatar, locationInfoWrapper, details, discordWidgetContainer, divider] 
             .forEach(element => {
                 setTimeout(() => element.classList.add('show-item'), delay += interval);
@@ -129,3 +127,4 @@ if (typeof enableCardTilt === 'function') {
 }
 
 type();
+
