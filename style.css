@@ -516,10 +516,11 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     pointer-events: none;
 }
 
+/* ********* ส่วนที่แก้ไขสำหรับ Eye Icon และ View Count (Text API) ********* */
 .hit-counter-container {
     display: flex !important;
     align-items: center;
-    gap: 4px;
+    gap: 6px; /* ระยะห่างระหว่างไอคอนกับตัวเลข */
     color: #f0f0f0;
     font-size: 11px;
     height: 18px;
@@ -528,14 +529,23 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     order: 2;
 }
 
+.hit-counter-icon {
+    font-size: 14px;
+    color: #f0f0f0; 
+}
+
+#count {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px; 
+    font-weight: 700;
+    color: #f0f0f0;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+}
+
 .hit-counter-number img {
-    height: 18px;
-    vertical-align: middle;
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    background: transparent !important;
-    filter: invert(1) grayscale(1) brightness(1.5);
+    height: 0 !important;
 }
 
 @media(max-width:768px){
@@ -550,3 +560,4 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         display: flex !important;
     }
 }
+/* ************************************************************* */
