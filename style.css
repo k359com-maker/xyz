@@ -75,9 +75,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .container { display:flex; justify-content:center; align-items:center; height:100vh; padding:20px; }
 
 .bio-card {
-    --shimmer-x: 0%; 
-    --shimmer-y: 0%; 
-    --shimmer-rotate: 0deg; 
     position: relative;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.096);
@@ -94,28 +91,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     transition: opacity 1s ease;
     transform-style: preserve-3d;
     perspective: 1000px;
-}
-
-.bio-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 100;
-    /* ⬇️ ปรับค่าให้แถบแสงยาวขึ้น (20% และ 80%) ⬇️ */
-    background: linear-gradient(
-        45deg, 
-        transparent 20%, /* เริ่มใสเร็วขึ้น */
-        rgba(255, 255, 255, 0.075) 1%, 
-        rgba(255, 255, 255, 0.062) 1%,
-        transparent 80% /* สิ้นสุดใสช้าลง */
-    );
-    transform: translate(var(--shimmer-x), var(--shimmer-y));
-    transform-origin: center center;
-    transition: transform 0.1s ease-out, background 0.1s ease-out;
 }
 
 .bio-card.visible { opacity: 1; }
@@ -596,6 +571,3 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         display: flex !important;
     }
 }
-
-
-
