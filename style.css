@@ -93,6 +93,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     perspective: 1000px;
 }
 
+
 .bio-card.visible { opacity: 1; }
 
 .profile-pic-container,
