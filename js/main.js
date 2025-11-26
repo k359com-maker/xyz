@@ -13,10 +13,10 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
-// --- โค้ด API นับคนดู (เปลี่ยนไปใช้ Hits.se) ---
+// --- โค้ด API นับคนดู (Hits.se - แก้ไข Protocol เป็น HTTP) ---
 async function loadViewers() {
-    // URL ที่ทำงานได้จริง (Hits.se)
-    const url = "https://hits.se/api/hit?url=solarax.views&type=json"; 
+    // API URL ที่ใช้ HTTP เพื่อลดปัญหา Mixed Content
+    const url = "http://hits.se/api/hit?url=solarax.views&type=json"; 
     
     try {
         const res = await fetch(url);
@@ -29,20 +29,23 @@ async function loadViewers() {
         
         const countElement = document.getElementById("count");
         if (countElement) {
-            
+            // Hits.se ใช้ 'counter' เป็น key สำหรับตัวเลข
             countElement.innerText = data.counter || '0'; 
         }
 
     } catch (error) {
-        console.error("⚠️ Error fetching viewer count (Check Hosting/CORS):", error);
+        console.error("⚠️ Error fetching viewer count (CORS/API Check):", error);
+        
         const countElement = document.getElementById("count");
         if (countElement) {
+            // *** เปลี่ยนข้อความ Error เป็น N/A ***
             countElement.innerText = 'N/A'; 
         }
     }
 }
-
+// ตั้งเวลาเรียกใช้ฟังก์ชันทุก 5 วินาที
 setInterval(loadViewers, 5000);
+// ---------------------------------------------------------------------------------
 
 
 function type() {
@@ -96,6 +99,7 @@ clickOverlay.addEventListener('click', () => {
     fetchDiscordStatus(); 
     setInterval(fetchDiscordStatus, 15000);
 
+    // เรียกใช้ API นับคนดูครั้งแรกเมื่อผู้ใช้คลิก
     loadViewers(); 
 
     clickOverlay.classList.add('hidden');
