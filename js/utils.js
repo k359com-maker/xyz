@@ -1,5 +1,3 @@
-// utils.js
-
 function enableCardTilt() {
     const maxRotate = 10;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -21,9 +19,10 @@ function enableCardTilt() {
             let gamma = e.gamma; 
             let beta = e.beta; 
             
-            // ⬇️ แก้ไข: ใส่เครื่องหมายลบ (-) เพื่อกลับทิศทางแกน Y ⬇️
+            // Inverted Y-axis (ซ้าย-ขวา)
             const rotateY = -(gamma / 90) * maxRotate; 
             
+            // Normal X-axis (ขึ้น-ลง)
             const rotateX = -(beta / 90) * maxRotate;
             const finalRotateX = Math.max(-maxRotate, Math.min(maxRotate, rotateX));
             const finalRotateY = Math.max(-maxRotate, Math.min(maxRotate, rotateY));
@@ -42,9 +41,11 @@ function enableCardTilt() {
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
+            
+            // Normal X-axis (ขึ้น-ลง)
             const rotateX = (y - centerY) / centerY * -maxRotate;
             
-            // ⬇️ แก้ไข: ใส่เครื่องหมายลบ (-) เพื่อกลับทิศทางแกน Y ⬇️
+            // Inverted Y-axis (ซ้าย-ขวา)
             const rotateY = -(x - centerX) / centerX * maxRotate; 
             
             bioCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
