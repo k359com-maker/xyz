@@ -5,9 +5,7 @@ function enableCardTilt() {
     
     function updateShimmer(rotateX, rotateY) {
         const shimmerTranslateX = (rotateY / maxRotate) * 50; 
-        const shimmerTranslateY = (rotateX / maxRotate) * 20; 
-
-        // ไม่จำเป็นต้องใช้ shimmerRotate ในโหมดแถบแสงแนวตั้ง
+        const shimmerTranslateY = (rotateX / maxRotate) * 5; 
 
         bioCard.style.setProperty('--shimmer-x', `${shimmerTranslateX}%`);
         bioCard.style.setProperty('--shimmer-y', `${shimmerTranslateY}%`);
@@ -18,10 +16,7 @@ function enableCardTilt() {
             let gamma = e.gamma; 
             let beta = e.beta; 
             
-            // Inverted Y-axis (ซ้าย-ขวา)
             const rotateY = -(gamma / 90) * maxRotate; 
-            
-            // Normal X-axis (ขึ้น-ลง)
             const rotateX = -(beta / 90) * maxRotate;
             const finalRotateX = Math.max(-maxRotate, Math.min(maxRotate, rotateX));
             const finalRotateY = Math.max(-maxRotate, Math.min(maxRotate, rotateY));
@@ -41,10 +36,7 @@ function enableCardTilt() {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
             
-            // Normal X-axis (ขึ้น-ลง)
             const rotateX = (y - centerY) / centerY * -maxRotate;
-            
-            // Inverted Y-axis (ซ้าย-ขวา)
             const rotateY = -(x - centerX) / centerX * maxRotate; 
             
             bioCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
