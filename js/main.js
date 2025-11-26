@@ -13,6 +13,38 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
+// --- โค้ด API นับคนดู (เปลี่ยนไปใช้ Hits.se) ---
+async function loadViewers() {
+    // URL ที่ทำงานได้จริง (Hits.se)
+    const url = "https://hits.se/api/hit?url=solarax.views&type=json"; 
+    
+    try {
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        
+        const countElement = document.getElementById("count");
+        if (countElement) {
+            
+            countElement.innerText = data.counter || '0'; 
+        }
+
+    } catch (error) {
+        console.error("⚠️ Error fetching viewer count (Check Hosting/CORS):", error);
+        const countElement = document.getElementById("count");
+        if (countElement) {
+            countElement.innerText = 'N/A'; 
+        }
+    }
+}
+
+setInterval(loadViewers, 5000);
+
+
 function type() {
     const currentText = texts[textIndex];
 
@@ -63,6 +95,8 @@ clickOverlay.addEventListener('click', () => {
     bgMusic.play().catch(e => console.error("Audio Autoplay failed:", e));
     fetchDiscordStatus(); 
     setInterval(fetchDiscordStatus, 15000);
+
+    loadViewers(); 
 
     clickOverlay.classList.add('hidden');
     
