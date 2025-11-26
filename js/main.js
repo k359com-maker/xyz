@@ -13,6 +13,43 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
+// --- โค้ด API นับคนดู (Text API + CORS Proxy) ---
+async function loadViewers() {
+    // ใช้ Proxy นำหน้าเพื่อเลี่ยง CORS (เฉพาะเมื่อรันบนโดเมนจริง)
+    const PROXY = 'https://cors-anywhere.herokuapp.com/';
+    const TARGET_URL = 'https://hits.se/api/hit?url=solarax.views&type=json';
+    const url = PROXY + TARGET_URL;
+    
+    try {
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+        
+        const countElement = document.getElementById("count");
+        if (countElement) {
+            // Hits.se ใช้ 'counter' เป็น key สำหรับตัวเลข
+            countElement.innerText = data.counter || '0'; 
+        }
+
+    } catch (error) {
+        console.error("⚠️ Error fetching viewer count (CORS/API Check):", error);
+        
+        const countElement = document.getElementById("count");
+        if (countElement) {
+            // แสดง N/A เมื่อเกิดข้อผิดพลาดในการดึงข้อมูล
+            countElement.innerText = 'N/A'; 
+        }
+    }
+}
+// ตั้งเวลาเรียกใช้ฟังก์ชันทุก 5 วินาที
+setInterval(loadViewers, 5000);
+// ---------------------------------------------------------------------------------
+
+
 function type() {
     const currentText = texts[textIndex];
 
@@ -63,6 +100,9 @@ clickOverlay.addEventListener('click', () => {
     bgMusic.play().catch(e => console.error("Audio Autoplay failed:", e));
     fetchDiscordStatus(); 
     setInterval(fetchDiscordStatus, 15000);
+
+    // เรียกใช้ API นับคนดูครั้งแรกเมื่อผู้ใช้คลิก
+    loadViewers(); 
 
     clickOverlay.classList.add('hidden');
     
