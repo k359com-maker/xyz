@@ -5,13 +5,12 @@ function enableCardTilt() {
     
     function updateShimmer(rotateX, rotateY) {
         const shimmerTranslateX = (rotateY / maxRotate) * 50; 
-        const shimmerTranslateY = (rotateX / maxRotate) * 50; 
+        const shimmerTranslateY = (rotateX / maxRotate) * 20; 
 
-        const shimmerRotate = -rotateY * 0.5 + rotateX * 0.5;
+        // ไม่จำเป็นต้องใช้ shimmerRotate ในโหมดแถบแสงแนวตั้ง
 
         bioCard.style.setProperty('--shimmer-x', `${shimmerTranslateX}%`);
         bioCard.style.setProperty('--shimmer-y', `${shimmerTranslateY}%`);
-        bioCard.style.setProperty('--shimmer-rotate', `${shimmerRotate}deg`);
     }
 
     if (isTouchDevice && supportsDeviceOrientation) {
@@ -58,7 +57,6 @@ function enableCardTilt() {
             
             bioCard.style.setProperty('--shimmer-x', `0%`);
             bioCard.style.setProperty('--shimmer-y', `0%`);
-            bioCard.style.setProperty('--shimmer-rotate', `0deg`);
         });
     }
 }
