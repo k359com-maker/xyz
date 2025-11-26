@@ -106,11 +106,11 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     pointer-events: none;
     z-index: 100;
     background: linear-gradient(
-        var(--shimmer-rotate), 
-        transparent 20%,
-        rgba(255, 255, 255, 0.4) 45%, 
-        rgba(255, 255, 255, 0.2) 55%,
-        transparent 80%
+        90deg, 
+        transparent 40%,
+        rgba(255, 255, 255, 0.5) 48%, 
+        rgba(255, 255, 255, 0.2) 52%,
+        transparent 60%
     );
     transform: translate(var(--shimmer-x), var(--shimmer-y));
     transform-origin: center center;
