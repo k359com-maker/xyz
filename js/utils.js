@@ -1,30 +1,18 @@
+// utils.js
 function enableCardTilt() {
     const maxRotate = 10;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const supportsDeviceOrientation = window.DeviceOrientationEvent;
-    
-    function updateShimmer(rotateX, rotateY) {
-        const shimmerTranslateX = (rotateY / maxRotate) * 50; 
-        const shimmerTranslateY = (rotateX / maxRotate) * 5; 
-
-        bioCard.style.setProperty('--shimmer-x', `${shimmerTranslateX}%`);
-        bioCard.style.setProperty('--shimmer-y', `${shimmerTranslateY}%`);
-    }
 
     if (isTouchDevice && supportsDeviceOrientation) {
         window.addEventListener('deviceorientation', e => {
             let gamma = e.gamma; 
             let beta = e.beta; 
-            
-            const rotateY = -(gamma / 90) * maxRotate; 
+            const rotateY = (gamma / 90) * maxRotate;
             const rotateX = -(beta / 90) * maxRotate;
             const finalRotateX = Math.max(-maxRotate, Math.min(maxRotate, rotateX));
             const finalRotateY = Math.max(-maxRotate, Math.min(maxRotate, rotateY));
-            
             bioCard.style.transform = `perspective(1000px) rotateX(${finalRotateX}deg) rotateY(${finalRotateY}deg)`;
-            
-            updateShimmer(finalRotateX, finalRotateY);
-            
         }, true);
     }
     
@@ -35,20 +23,13 @@ function enableCardTilt() {
             const y = e.clientY - rect.top;
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
             const rotateX = (y - centerY) / centerY * -maxRotate;
-            const rotateY = -(x - centerX) / centerX * maxRotate; 
-            
+            const rotateY = (x - centerX) / centerX * maxRotate;
             bioCard.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-            
-            updateShimmer(rotateX, rotateY);
         });
         
         bioCard.addEventListener('mouseleave', () => {
             bioCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-            
-            bioCard.style.setProperty('--shimmer-x', `0%`);
-            bioCard.style.setProperty('--shimmer-y', `0%`);
         });
     }
 }
