@@ -23,7 +23,7 @@ async function loadViewers() {
 
         const countElement = document.getElementById("count");
         if (countElement) {
-            countElement.innerText = data.counter || '0';
+            countElement.innerText = data.view || '0'; 
         }
 
     } catch (err) {
@@ -95,7 +95,7 @@ clickOverlay.addEventListener('click', () => {
         if (isMuted) muteBtn.click(); 
         
         let delay = 0;
-        const interval = 50;
+        const interval = 120;
         
         [avatar, details, discordWidgetContainer, locationInfoWrapper, divider] 
             .forEach(element => {
@@ -107,7 +107,7 @@ clickOverlay.addEventListener('click', () => {
              
              const socialIcons = footer.querySelectorAll('.social-icon');
              let iconDelay = delay; 
-             const iconInterval = 120; 
+             const iconInterval = 120;
 
              socialIcons.forEach(icon => {
                  setTimeout(() => {
@@ -116,6 +116,7 @@ clickOverlay.addEventListener('click', () => {
              });
              
         }, delay); 
+
 
     }, 600);
 });
