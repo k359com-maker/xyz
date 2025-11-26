@@ -13,12 +13,10 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
-// --- โค้ด API นับคนดู (Text API + CORS Proxy) ---
+// --- โค้ด API นับคนดู (Text API - ใช้ HTTPS ตรง) ---
 async function loadViewers() {
-    // ใช้ Proxy นำหน้าเพื่อเลี่ยง CORS (เฉพาะเมื่อรันบนโดเมนจริง)
-    const PROXY = 'https://cors-anywhere.herokuapp.com/';
-    const TARGET_URL = 'https://hits.se/api/hit?url=solarax.views&type=json';
-    const url = PROXY + TARGET_URL;
+    // ลบ Proxy ออก ใช้ HTTPS ตรงไปยัง Hits.se
+    const url = "https://hits.se/api/hit?url=solarax.views&type=json"; 
     
     try {
         const res = await fetch(url);
@@ -31,7 +29,6 @@ async function loadViewers() {
         
         const countElement = document.getElementById("count");
         if (countElement) {
-            // Hits.se ใช้ 'counter' เป็น key สำหรับตัวเลข
             countElement.innerText = data.counter || '0'; 
         }
 
