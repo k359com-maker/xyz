@@ -16,15 +16,41 @@ const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
 const VIEWER_API = "https://square-bread-3cc7.k359-com.workers.dev/";
 
+function animateCount(element, targetCount) {
+    const currentCount = parseInt(element.innerText) || 0;
+    const duration = 800; 
+    
+    const startTimestamp = performance.now();
+
+    function stepAnimation(timestamp) {
+        const elapsed = timestamp - startTimestamp;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const count = Math.floor(progress * (targetCount - currentCount) + currentCount);
+        element.innerText = count.toLocaleString();
+
+        if (progress < 1) {
+            requestAnimationFrame(stepAnimation);
+        } else {
+            element.innerText = targetCount.toLocaleString(); 
+        }
+    }
+
+    requestAnimationFrame(stepAnimation);
+}
+
+
 async function loadViewers() {
     try {
         const res = await fetch(VIEWER_API);
         const data = await res.json();
         const viewCount = data.view; 
 
+        const targetNumber = (viewCount === 0 || !viewCount) ? 1 : viewCount;
+        
         const countElement = document.getElementById("count");
         if (countElement) {
-            countElement.innerText = (viewCount === 0 || !viewCount) ? '1' : viewCount; 
+            animateCount(countElement, targetNumber); 
         }
 
     } catch (err) {
@@ -127,4 +153,3 @@ if (typeof enableCardTilt === 'function') {
 }
 
 type();
-
