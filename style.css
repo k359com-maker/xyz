@@ -546,8 +546,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 .hit-counter-number img {
-    /* สไตล์สำหรับ img (ถ้ามี) */
-    height: 0 !important;
+    height: 0 !important; /* ซ่อน img เดิม */
 }
 
 @media(max-width:768px){
@@ -562,4 +561,3 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         display: flex !important;
     }
 }
-/* ************************************************************* */
