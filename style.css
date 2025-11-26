@@ -380,36 +380,59 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     transform: translateY(0);
 }
 
+/* ⬇️ แก้ไข: สำหรับจอใหญ่ ชิดขวา ⬇️ */
 .card-footer {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-end; /* จัดให้ชิดขวา */
     align-items: center;
+    padding-top: 15px;
 }
 
 .social-icons {
     display: flex;
-    gap: 8px;
+    gap: 15px; /* ลดระยะห่างบนจอใหญ่ให้ชิดกันมากขึ้น */
 }
 
+/* **โค้ดสำหรับไอคอนไม่มีกรอบและเรืองแสง (Glow Effect) ** */
 .social-icon {
-    font-size: 18px;
-    color: #cccbff33;
-    width: 35px;
-    height: 35px;
-    background: #cccbff11;
-    border: 1px solid #cccbff0e;
-    border-radius: 8px;
+    /* ล้างสไตล์เดิมที่เป็นกรอบ */
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    width: auto;
+    height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    transition: all 0.3s ease;
+    
+    /* สไตล์สำหรับไอคอน */
+    font-size: 2.2em;
+    color: rgba(255, 255, 255, 0.7);
+    
+    /* ⬅️ เพิ่ม: ทำให้ไอคอนซ่อนอยู่ก่อน และเตรียม transition สำหรับการโผล่มา */
+    opacity: 0;
+    transform: translateY(10px); 
+    transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease; 
 }
+
+/* ⬅️ เพิ่ม: สไตล์เมื่อไอคอนต้องโผล่มา */
+.social-icon.show-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .social-icon:hover {
-    background: #cccbff5e;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px #cccbff5e;
+    /* เอฟเฟกต์เรืองแสง (Glow) */
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.5),
+                 0 0 25px rgba(255, 255, 255, 0.3);
+    
+    transform: scale(1.1); /* เพิ่มเอฟเฟกต์ขยายขนาด 10% */
+    box-shadow: none;
 }
+/* ************************************************************* */
 
 @media(max-width:768px){
 
@@ -483,22 +506,23 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         text-align: left;
         margin-top: 5px;
     }
-
+    
     .card-footer {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: center; 
         gap: 0;
     }
     .social-icons {
         margin-top: 0;
         width: auto;
         justify-content: center;
-        gap: 8px;
+        gap: 10px; 
     }
+    
     .social-icon {
-        width: 40px;
-        height: 40px;
+        width: auto;
+        height: auto;
     }
 }
 
@@ -516,7 +540,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     pointer-events: none;
 }
 
-/* ********* ส่วนที่แก้ไขสำหรับ Eye Icon และ View Count (Text API) ********* */
 .hit-counter-container {
     display: flex !important;
     align-items: center;
@@ -534,7 +557,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     color: #f0f0f0; 
 }
 
-/* สไตล์สำหรับตัวเลขที่ดึงมาจาก Text API */
 #count {
     font-family: 'Orbitron', sans-serif; 
     font-size: 14px; 
@@ -546,7 +568,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 .hit-counter-number img {
-    height: 0 !important; /* ซ่อน img เดิม */
+    height: 0 !important; 
 }
 
 @media(max-width:768px){
