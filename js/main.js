@@ -13,39 +13,26 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
-// --- โค้ด API นับคนดู (Text API - ใช้ HTTPS ตรง) ---
+
+const VIEWER_API = "https://square-bread-3cc7.k359-com.workers.dev/";
+
 async function loadViewers() {
-    // ลบ Proxy ออก ใช้ HTTPS ตรงไปยัง Hits.se
-    const url = "https://hits.se/api/hit?url=solarax.views&type=json"; 
-    
     try {
-        const res = await fetch(url);
-
-        if (!res.ok) {
-            throw new Error(`HTTP error! status: ${res.status}`);
-        }
-
+        const res = await fetch(VIEWER_API);
         const data = await res.json();
-        
+
         const countElement = document.getElementById("count");
         if (countElement) {
-            countElement.innerText = data.counter || '0'; 
+            countElement.innerText = data.counter || '0';
         }
 
-    } catch (error) {
-        console.error("⚠️ Error fetching viewer count (CORS/API Check):", error);
-        
+    } catch (err) {
+        console.error("Viewer API Error:", err);
         const countElement = document.getElementById("count");
-        if (countElement) {
-            // แสดง N/A เมื่อเกิดข้อผิดพลาดในการดึงข้อมูล
-            countElement.innerText = 'N/A'; 
-        }
+        if (countElement) countElement.innerText = "N/A";
     }
 }
-// ตั้งเวลาเรียกใช้ฟังก์ชันทุก 5 วินาที
 setInterval(loadViewers, 5000);
-// ---------------------------------------------------------------------------------
-
 
 function type() {
     const currentText = texts[textIndex];
@@ -57,18 +44,14 @@ function type() {
             isDeleting = false;
             textIndex = (textIndex + 1) % texts.length;
             setTimeout(type, 500);
-        } else {
-            setTimeout(type, 50);
-        }
+        } else setTimeout(type, 50);
     } else {
         charIndex++;
         typingElement.textContent = currentText.substring(0, charIndex);
         if (charIndex === currentText.length) {
             isDeleting = true;
             setTimeout(type, 1500);
-        } else {
-            setTimeout(type, 100);
-        }
+        } else setTimeout(type, 100);
     }
 }
 
@@ -88,6 +71,7 @@ muteBtn.addEventListener('click', () => {
         }
         isMuted = !isMuted;
     }, 200);
+
     setTimeout(() => muteBtn.classList.remove('rotating'), 400);
 });
 
@@ -95,35 +79,49 @@ clickOverlay.addEventListener('click', () => {
 
     bgVideo.play().catch(e => console.error("Video Autoplay failed:", e));
     bgMusic.play().catch(e => console.error("Audio Autoplay failed:", e));
-    fetchDiscordStatus(); 
-    setInterval(fetchDiscordStatus, 15000);
 
-    // เรียกใช้ API นับคนดูครั้งแรกเมื่อผู้ใช้คลิก
-    loadViewers(); 
-
+    loadViewers();
+    
+    if (typeof fetchDiscordStatus === 'function') {
+        fetchDiscordStatus();
+    }
+    
     clickOverlay.classList.add('hidden');
     
     setTimeout(() => {
         clickOverlay.style.display = 'none';
         bioCard.classList.add('visible');
-        enableCardTilt(); 
+
         if (isMuted) muteBtn.click(); 
         
         let delay = 0;
-        const interval = 300;
+        const interval = 50;
         
-        [avatar, details, discordWidgetContainer, locationInfoWrapper, divider, footer].forEach(element => {
-            setTimeout(() => {
-                element.classList.add('show-item');
-            }, delay += interval);
-        });
+        [avatar, details, discordWidgetContainer, locationInfoWrapper, divider] 
+            .forEach(element => {
+                setTimeout(() => element.classList.add('show-item'), delay += interval);
+            });
+            
+        setTimeout(() => {
+             footer.classList.add('show-item');
+             
+             const socialIcons = footer.querySelectorAll('.social-icon');
+             let iconDelay = delay; 
+             const iconInterval = 120; 
+
+             socialIcons.forEach(icon => {
+                 setTimeout(() => {
+                     icon.classList.add('show-item');
+                 }, iconDelay += iconInterval);
+             });
+             
+        }, delay); 
+
     }, 600);
 });
 
-type();
-
-if (typeof particlesJS !== 'undefined') {
-    particlesJS.load('particles-js', 'particles.json', () => console.log('Particles loaded'));
-} else {
-    console.warn('particlesJS is not loaded. Skipping particle initialization.');
+if (typeof enableCardTilt === 'function') {
+    enableCardTilt();
 }
+
+type();
