@@ -46,7 +46,7 @@ async function loadViewers() {
         const data = await res.json();
         const viewCount = data.view; 
 
-        const targetNumber = (viewCount === 0 || !viewCount) ? 1 : viewCount;
+        const targetNumber = (viewCount === 0 || !viewCount) ? N/A : viewCount;
         
         const countElement = document.getElementById("count");
         if (countElement) {
@@ -153,3 +153,4 @@ if (typeof enableCardTilt === 'function') {
 }
 
 type();
+
