@@ -13,6 +13,8 @@ const divider = bioCard.querySelector('.card-divider');
 const footer = bioCard.querySelector('.card-footer');
 const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 
+const onlineStatusButton = document.querySelector('.online-status-fixed');
+
 
 const VIEWER_API = "https://square-bread-3cc7.k359-com.workers.dev/";
 
@@ -46,7 +48,7 @@ async function loadViewers() {
         const data = await res.json();
         const viewCount = data.view; 
 
-        const targetNumber = (viewCount === 0 || !viewCount) ? "N/A" : viewCount; // แก้ไข: เพิ่ม "" ให้กับ N/A
+        const targetNumber = (viewCount === 0 || !viewCount) ? "N/A" : viewCount; 
         
         const countElement = document.getElementById("count");
         if (countElement) {
@@ -147,6 +149,26 @@ clickOverlay.addEventListener('click', () => {
 
     }, 600);
 });
+
+if (onlineStatusButton) {
+    onlineStatusButton.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        
+        const rect = onlineStatusButton.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        ripple.style.left = x + 'px';
+        ripple.style.top = y + 'px';
+
+        this.appendChild(ripple);
+
+        ripple.addEventListener('animationend', () => {
+            ripple.remove();
+        });
+    });
+}
 
 if (typeof enableCardTilt === 'function') {
     enableCardTilt();
