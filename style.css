@@ -22,8 +22,8 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: -2;
-    filter: blur(1px);
-    -webkit-filter: blur(2px);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
 }
 
 #bg-music { position: absolute; opacity: 0; pointer-events: none; }
@@ -572,3 +572,4 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         display: flex !important;
     }
 }
+
