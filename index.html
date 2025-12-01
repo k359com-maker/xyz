@@ -31,7 +31,7 @@
 </head>
 <body>
 
-    <div id="particles-js"></div>
+    
     <div id="footer-credit">© 2025 Solara-X Designer & Developer by Ren</div>
 
     <video id="bg-video" loop muted autoplay>
@@ -95,11 +95,63 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
     <script src="js/constants.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/discord.js"></script>
     <script src="js/main.js"></script>
+
+    <script>
+    (function() {
+      const domain = encodeURIComponent(window.location.hostname);
+      const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const page_path = window.location.pathname;
+      const page_title = document.title;
+      const referrer = document.referrer;
+      
+      let search_query = '';
+      if (referrer) {
+        try {
+          const url = new URL(referrer);
+          if (url.hostname.includes('google.com')) {
+            search_query = url.searchParams.get('q') || '';
+          } else if (url.hostname.includes('bing.com')) {
+            search_query = url.searchParams.get('q') || '';
+          } else if (url.hostname.includes('yahoo.com')) {
+            search_query = url.searchParams.get('p') || '';
+          } else if (url.hostname.includes('duckduckgo.com')) {
+            search_query = url.searchParams.get('q') || '';
+          }
+        } catch (e) {
+          
+        }
+      }
+
+      fetch('https://visitor.6developer.com/visit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          domain, 
+          timezone,
+          page_path,
+          page_title,
+          referrer,
+          search_query
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Visitor count:', data);
+        
+        const countElement = document.getElementById('count');
+        if (countElement) {
+          
+          animateCount(countElement, data.totalCount); 
+        }
+      })
+      .catch(error => console.error('Error:', error));
+    })();
+    </script>
     
     <div class="online-status-fixed">
         <span class="online-indicator"></span>
