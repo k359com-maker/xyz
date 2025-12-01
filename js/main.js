@@ -16,8 +16,6 @@ const locationInfoWrapper = bioCard.querySelector('.location-info-wrapper');
 const onlineStatusButton = document.querySelector('.online-status-fixed');
 
 
-const VIEWER_API = "https://square-bread-3cc7.k359-com.workers.dev/";
-
 function animateCount(element, targetCount) {
     const currentCount = parseInt(element.innerText) || 0;
     const duration = 800; 
@@ -41,27 +39,6 @@ function animateCount(element, targetCount) {
     requestAnimationFrame(stepAnimation);
 }
 
-
-async function loadViewers() {
-    try {
-        const res = await fetch(VIEWER_API);
-        const data = await res.json();
-        const viewCount = data.view; 
-
-        const targetNumber = (viewCount === 0 || !viewCount) ? "N/A" : viewCount; 
-        
-        const countElement = document.getElementById("count");
-        if (countElement) {
-            animateCount(countElement, targetNumber); 
-        }
-
-    } catch (err) {
-        console.error("Viewer API Error:", err);
-        const countElement = document.getElementById("count");
-        if (countElement) countElement.innerText = "N/A";
-    }
-}
-setInterval(loadViewers, 5000);
 
 function type() {
     const currentText = texts[textIndex];
@@ -108,8 +85,6 @@ clickOverlay.addEventListener('click', () => {
 
     bgVideo.play().catch(e => console.error("Video Autoplay failed:", e));
     bgMusic.play().catch(e => console.error("Audio Autoplay failed:", e));
-
-    loadViewers();
     
     if (typeof fetchDiscordStatus === 'function') {
         fetchDiscordStatus();
@@ -175,3 +150,8 @@ if (typeof enableCardTilt === 'function') {
 }
 
 type();
+
+bgVideo.addEventListener('ended', () => {
+    bgVideo.currentTime = 0;
+    bgVideo.play().catch(e => console.error("Video restart failed:", e));
+});
