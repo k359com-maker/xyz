@@ -7,8 +7,8 @@ body {
     font-family: 'Orbitron', sans-serif;
     height: 100vh;
     overflow: hidden;
-    background-color: white; 
-    color: black; 
+    background-color: #0d1117; 
+    color: #c9d1d9; 
     cursor: url("media/mmm.png") 5 5, auto !important; 
 }
 
@@ -31,7 +31,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .overlay {
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
-    background: rgba(255,255,255,0.4); 
+    background: rgba(0,0,0,0.6); 
     z-index: -1;
 }
 
@@ -39,12 +39,12 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     backdrop-filter: blur(30px);
-    background: rgba(255, 255, 255, 0.63); 
+    background: rgba(0, 0, 0, 0.75); 
     display: flex; justify-content: center; align-items: center;
-    color: black;
+    color: white;
     font-size: 48px;
     font-weight: bold;
-    text-shadow: 2px 2px 6px rgba(255,255,255,0.6);
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
     z-index: 2000;
     cursor: pointer;
     transition: opacity 0.6s ease;
@@ -54,11 +54,11 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .mute-btn {
     position: fixed; top: 20px; right: 20px;
-    background: rgba(255, 255, 255, 0.5); 
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 30%;
     width: 40px; height: 40px;
-    color: black; 
+    color: white; 
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     font-size: 20px;
@@ -77,15 +77,15 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .bio-card {
     position: relative;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.2); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(0, 0, 0, 0.1); 
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.1); 
     border-radius: 12px;
     padding: 10px;
     width: 600px;
     max-width: 90vw;
-    color: black;
+    color: #c9d1d9;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0);
     opacity: 0;
     transition: opacity 2s ease;
@@ -148,19 +148,19 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 0px;
-    color: #333333; 
+    color: #ffffff; 
 }
 
 .description {
     font-size: 14px;
-    color: #555555; 
+    color: #b0b8c0; 
     margin-bottom: 5px;
     min-height: 18px;
 }
 
 .joined-date {
     font-size: 12px;
-    color: #777777; 
+    color: #8b949e; 
     margin-top: 5px;
 }
 
@@ -173,15 +173,15 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 #discord-activity-widget {
-    background: #0000001a;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
     padding: 12px;
     display: flex;
     align-items: flex-start;
     max-width: 100%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0);
-    color: black; 
+    color: #c9d1d9; 
     position: relative;
     justify-content: flex-start;
 }
@@ -223,7 +223,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     height: 14px;
     border-radius: 50%;
     margin: 0;
-    border: 3px solid #E3E3E3; 
+    border: 3px solid #0d1117; 
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
     z-index: 11;
 }
@@ -250,7 +250,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .discord-username {
     font-weight: 700;
-    color: #000000; 
+    color: #ffffff; 
     font-size: 14px;
     margin-right: 6px;
     line-height: 1.1;
@@ -279,7 +279,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .activity-type {
     font-size: 11px;
-    color: #555555; 
+    color: #b0b8c0; 
     font-weight: 600;
     margin-bottom: 2px;
     white-space: nowrap;
@@ -288,7 +288,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .activity-name {
     font-weight: 600;
-    color: #000000;
+    color: #ffffff;
     font-size: 14px;
     white-space: normal;
     word-wrap: break-word;
@@ -303,7 +303,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .activity-details, .activity-state {
     font-size: 12px;
-    color: #333333; 
+    color: #b0b8c0; 
     line-height: 1.2;
     white-space: normal;
     word-wrap: break-word;
@@ -324,7 +324,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     border-radius: 8px;
     overflow: hidden;
     flex-shrink: 0;
-    background-color: #E3E3E3; 
+    background-color: #30363d; 
 }
 
 .activity-icon-container img {
@@ -335,13 +335,13 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .no-activity-placeholder {
     font-size: 12px;
-    color: #555555; 
+    color: #b0b8c0; 
     padding-top: 5px;
 }
 
 .card-divider {
     border: none;
-    border-top: 1px solid rgba(0, 0, 0, 0.2); 
+    border-top: 1px solid rgba(255, 255, 255, 0.2); 
     margin: 15px 0;
 }
 
@@ -360,7 +360,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .location-info {
     font-size: 11px;
-    color: #777777; 
+    color: #8b949e; 
     text-align: left;
     display: flex;
     align-items: center;
@@ -407,7 +407,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     text-decoration: none;
     
     font-size: 2.2em;
-    color: rgba(0, 0, 0, 0.7);
+    color: rgba(255, 255, 255, 0.6);
     
     opacity: 0;
     transition: all 0.3s ease, opacity 0.6s ease, transform 0.6s ease; 
@@ -419,10 +419,10 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 .social-icon:hover {
-    color: #000000;
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.3),
-                 0 0 15px rgba(0, 0, 0, 0.2),
-                 0 0 25px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3),
+                 0 0 15px rgba(255, 255, 255, 0.2),
+                 0 0 25px rgba(255, 255, 255, 0.1);
     
     transform: scale(1.1); 
     box-shadow: none;
@@ -515,14 +515,13 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     }
 }
 
-#particles-js{ position:fixed; top:0; left:0; width:100%; height:100%; z-index:-3; }
 
 #footer-credit {
     position: fixed;
     left: 1vw;
     bottom: 1vh;
     font-size: 5px;
-    color: rgba(0, 0, 0, 0.548);
+    color: rgba(255, 255, 255, 0.5);
     opacity: 0.4;
     z-index: 1000;
     font-family: 'Orbitron', sans-serif;
@@ -533,7 +532,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     display: flex !important;
     align-items: center;
     gap: 6px; 
-    color: black; 
+    color: #c9d1d9; 
     font-size: 11px;
     height: 18px;
     margin-top: 0;
@@ -543,14 +542,14 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .hit-counter-icon {
     font-size: 14px;
-    color: black;
+    color: #c9d1d9;
 }
 
 #count {
     font-family: 'Orbitron', sans-serif; 
     font-size: 14px; 
     font-weight: 700;
-    color: black; 
+    color: #ffffff; 
     padding: 0;
     margin: 0;
 }
@@ -589,7 +588,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
         opacity: 0.8;
     }
     50% {
-        box-shadow: 0 0 8px #39FF14, 0 0 15px #39FF14, 0 0 20px rgba(57, 255, 20, 0.7); 
+        box-shadow: 0 0 8px #39FF14, 0 0 15px #39FF14, 0 0 20px rgba(105, 255, 78, 0.7); 
         opacity: 1;
     }
     100% {
@@ -615,8 +614,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); 
     
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
     z-index: 900;
     
     animation: slideDown 1s ease-out forwards; 
