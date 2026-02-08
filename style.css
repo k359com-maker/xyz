@@ -118,20 +118,60 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .bio-card {
     position: relative;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.6); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 12px;
-    padding: 10px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(0, 0, 0, 0.65)
+    );
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+
+    padding: 16px;
     width: 600px;
     max-width: 90vw;
-    color: #c9d1d9;
-    box-shadow: 0 4px 30px #0000;
+
+    color: #e6edf3;
+    font-family: "Inter", system-ui, sans-serif;
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.6),
+        inset 0 0 0.5px rgba(255, 255, 255, 0.3);
+
     opacity: 0;
-    transition: opacity 2s ease;
+    transform: translateY(15px) scale(0.98);
+    transition:
+        opacity 1.8s ease,
+        transform 1.8s cubic-bezier(.2, .8, .2, 1);
+
     transform-style: preserve-3d;
     perspective: 1000px;
+}
+
+.bio-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+    );
+
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+.bio-card.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
 
 .bio-card.visible {
@@ -654,4 +694,5 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     box-shadow: 0 0 5px #39ff14, 0 0 12px #39ff14, 0 0 20px rgba(57, 255, 20, 0.8); 
     animation: glow-flicker 2s infinite alternate ease-in-out;
 }
+
 
