@@ -11,20 +11,20 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 </style>
 </head>
 <body>
-<div id="footer-credit">© 2025 Solara-X Designer & Developer by Ren</div>
+<div id="footer-credit">© 2025 Solara-X Designer & Developer by Ren | Solara-X</div>
 <video id="bg-video" loop muted autoplay><source src="media/PinDown.io_@ANDRESSAN956_1768740175.mp4" type="video/mp4"></video>
 <audio id="bg-music" loop><source src="media/[dream].mp3" type="audio/mpeg"></audio>
 <div class="overlay"></div>
-<div class="click-overlay" id="clickOverlay">Click</div>
+<div class="click-overlay" id="clickOverlay">Click to enter..</div>
 <button class="mute-btn" id="muteBtn"><i class="fas fa-volume-mute"></i></button>
 <div class="container">
 <div class="bio-card" id="bioCard">
 <div class="card-header">
 <div class="profile-pic-container"><img src="media/dddd.gif" alt="Photo de profil" class="profile-pic"></div>
 <div class="user-details">
-<div class="name">Solaraxx</div>
+<div class="name">@urbanmysticabyss</div>
 <div class="description" id="typingText"></div>
-<div class="joined-date">N/A</div>
+<div class="joined-date">Not Applicable</div>
 </div>
 <div class="discord-status-container"><div id="discord-activity-widget"></div></div>
 </div>
@@ -33,7 +33,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 <div class="location-info"><i class="fas fa-globe-asia"></i> Bangkok | TH</div>
 <div class="hit-counter-container">
 <i class="fas fa-eye hit-counter-icon"></i>
-<div class="hit-counter-number"><span id="count">N/A</span></div>
+<div class="hit-counter-number"><span id="count">Not Applicable</span></div>
 </div>
 </div>
 <div class="card-footer">
@@ -71,9 +71,10 @@ function a(){const s=l[u];m?(p--,b.textContent=s.substring(0,p),p===0?(m=!1,u=(u
 g.addEventListener("click",()=>{const s=g.querySelector("i");g.classList.add("rotating"),setTimeout(()=>{d?(s.classList.replace("fa-volume-mute","fa-volume-up"),h.muted=!1,f.muted=!1):(s.classList.replace("fa-volume-up","fa-volume-mute"),h.muted=!0,f.muted=!0),d=!d},200),setTimeout(()=>g.classList.remove("rotating"),400)}),v.addEventListener("click",()=>{h.play().catch(s=>console.error("Video Autoplay failed:",s)),f.play().catch(s=>console.error("Audio Autoplay failed:",s)),typeof c==="function"&&c(),v.classList.add("hidden"),setTimeout(()=>{v.style.display="none",x.classList.add("visible"),d&&g.click();let s=0;const e=120;[k,R,I,D,j].forEach(l=>{setTimeout(()=>l.classList.add("show-item"),s+=e)}),setTimeout(()=>{T.classList.add("show-item");const l=T.querySelectorAll(".social-icon");let d=s;const u=120;l.forEach(p=>{setTimeout(()=>{p.classList.add("show-item")},d+=u)})},s)},600)}),A&&A.addEventListener("click",function(s){const e=document.createElement("span");e.classList.add("ripple");const l=A.getBoundingClientRect(),d=s.clientX-l.left,u=s.clientY-l.top;e.style.left=d+"px",e.style.top=u+"px",this.appendChild(e),e.addEventListener("animationend",()=>{e.remove()})}),typeof r==="function"&&r(),a(),h.addEventListener("ended",()=>{h.currentTime=0,h.play().catch(s=>console.error("Video restart failed:",s))}),i(),document.onkeydown=function(s){return s.keyCode==123?!1:s.ctrlKey&&s.shiftKey&&s.keyCode=="I".charCodeAt(0)?!1:s.ctrlKey&&s.keyCode=="U".charCodeAt(0)?!1:void 0},(function(){const s=encodeURIComponent(window.location.hostname),e=Intl.DateTimeFormat().resolvedOptions().timeZone,l=window.location.pathname,d=document.title,u=document.referrer;let p="";if(u){try{const m=new URL(u);m.hostname.includes("google.com")?p=m.searchParams.get("q")||"":m.hostname.includes("bing.com")?p=m.searchParams.get("q")||"":m.hostname.includes("yahoo.com")?p=m.searchParams.get("p")||"":m.hostname.includes("duckduckgo.com")&&(p=m.searchParams.get("q")||"")}catch(m){}}fetch("https://visitor.6developer.com/visit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({domain:s,timezone:e,page_path:l,page_title:d,referrer:u,search_query:p})}).then(m=>m.json()).then(m=>{console.log("Visitor count:",m);const g=document.getElementById("count");g&&t(g,m.totalCount)}).catch(m=>console.error("Error:",m))}());
 </script>
 
-<div class="online-status-fixed"><span class="online-indicator"></span> N/A</div>
+<div class="online-status-fixed"><span class="online-indicator"></span> Online System</div>
 </body>
 </html>
+
 
 
 
