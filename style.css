@@ -706,7 +706,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     gap: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     z-index: 999;
-    animation: slideDown 3s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    animation: slideDown 7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
     opacity: 0;
     overflow: hidden;
 }
@@ -749,6 +749,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     border-radius: 50%;
     background: rgba(57, 255, 20, 0.8);
     z-index: -1;
-    animation: ripple-out 3s infinite cubic-bezier(0.23, 1, 0.32, 1);
+    animation: ripple-out 3.5s infinite cubic-bezier(0.23, 1, 0.32, 1);
 }
+
 
