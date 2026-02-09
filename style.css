@@ -655,58 +655,61 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 @keyframes glow-flicker {
-    0% { box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14; opacity: .8; }
-    50% { box-shadow: 0 0 8px #39ff14, 0 0 15px rgba(57, 255, 20, 0.7), 0 0 20px rgba(57, 255, 20, 0.5); opacity: 1; }
-    100% { box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14; opacity: .8; }
+    0% { 
+        box-shadow: 0 0 8px #39ff14, 0 0 15px rgba(57, 255, 20, 0.4); 
+        opacity: 0.9; 
+        transform: scale(0.95);
+    }
+    50% { 
+        box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.8), 0 0 35px rgba(57, 255, 20, 0.3); 
+        opacity: 1; 
+        transform: scale(1.05);
+    }
+    100% { 
+        box-shadow: 0 0 8px #39ff14, 0 0 15px rgba(57, 255, 20, 0.4); 
+        opacity: 0.9; 
+        transform: scale(0.95);
+    }
 }
 
 .online-status-fixed {
     position: fixed;
-    top: 15px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    background: #000000; 
+    background: rgba(0, 0, 0, .815); 
     color: #ffffff;
-    padding: 10px 22px;
-    border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 10px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 10px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    z-index: 999;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-    animation: slideDownSmooth 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-.online-status-fixed:active {
-    transform: translateX(-50%) scale(0.92);
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
+    z-index: 900;
+    animation: slideDown 1s ease-out forwards;
+    opacity: 0;
 }
 
 .online-indicator {
-    width: 9px;
-    height: 9px;
-    background: #39ff14;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 35% 35%, #a7ff83, #39ff14);
     border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
     position: relative;
-    box-shadow: 0 0 12px rgba(57, 255, 20, 0.8);
+    animation: glow-flicker 2s infinite alternate ease-in-out;
 }
 
 .online-indicator::after {
     content: '';
     position: absolute;
-    inset: 0;
+    inset: -3px;
     border-radius: 50%;
     background: #39ff14;
-    animation: live-wave 2.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(4px);
+    opacity: 0.4;
+    z-index: -1;
 }
-
-
-
-
-
-
-
