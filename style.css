@@ -660,50 +660,52 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     100% { box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14; opacity: .8; }
 }
 
-/* สถานะเริ่มต้น (ซ่อนและเป็นจุดเล็ก) */
+/* --- สถานะเริ่มต้น (ซ่อนและเป็นทรงแคปซูลเล็ก) --- */
 .online-status-fixed {
     position: fixed;
-    top: -50px; /* ซ่อนไว้เหนือหน้าจอ */
+    top: -60px; /* ซ่อนไว้ข้างบน */
     left: 50%;
     transform: translateX(-50%);
-    
-    /* ทรงแคปซูลเริ่มต้นขนาดเล็ก */
-    width: 80px; 
-    height: 30px;
     background: rgba(0, 0, 0, 0.9); 
     color: #ffffff;
+    
+    /* ทรงแคปซูลเริ่มต้น */
+    width: 80px; 
+    height: 30px;
     border-radius: 50px;
     
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    z-index: 2500;
-    font-size: 0; /* ซ่อนตัวอักษรตอนแรก */
+    gap: 0px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    z-index: 2000;
+    font-size: 0px; /* ซ่อนตัวอักษรไว้ก่อน */
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
     
-    /* ใช้ bezier เพื่อความหน่วงแบบ iOS */
+    /* Transition ให้เหมือน iPhone (สไลด์ลงมาก่อนแล้วค่อยขยาย) */
     transition: 
-        top 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
-        width 0.4s 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
-        height 0.3s 0.3s,
+        top 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28), 
+        width 0.4s 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.2), 
+        height 0.3s 0.2s, 
         opacity 0.3s,
-        font-size 0.2s 0.4s;
+        font-size 0.2s 0.4s,
+        gap 0.2s 0.4s;
 }
 
-/* สถานะเมื่อกดหน้าจอ (ขยายออก) */
+/* --- สถานะเมื่อ Active (สไลด์ลงมาและขยายออก) --- */
 .online-status-fixed.active {
-    top: 15px; /* สไลด์ลงมา */
-    width: 260px; /* ขยายออกซ้ายขวา */
+    top: 15px; 
+    width: 260px; /* ขยายความกว้าง */
     height: 45px;
     opacity: 1;
     font-size: 11px; /* แสดงตัวอักษร */
+    gap: 10px;
 }
 
-/* ส่วนของไฟสถานะ */
+/* ไฟสถานะ */
 .online-indicator {
     display: inline-block;
     width: 10px;
@@ -712,7 +714,9 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     border-radius: 50%;
     box-shadow: 0 0 10px #39ff14;
     flex-shrink: 0;
+    animation: glow-flicker 2s infinite alternate ease-in-out;
 }
+
 
 
 
