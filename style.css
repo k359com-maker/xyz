@@ -666,9 +666,17 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 @keyframes capsule-wave-flow {
-    0% { transform: translateX(-20%) scaleX(0.5); opacity: 0; }
-    20% { opacity: 0.5; }
-    100% { transform: translateX(150%) scaleX(1.5); opacity: 0; }
+    0% { 
+        left: -100%;
+        opacity: 0;
+    }
+    50% { 
+        opacity: 0.3;
+    }
+    100% { 
+        left: 200%;
+        opacity: 0;
+    }
 }
 
 @keyframes ripple-out {
@@ -706,12 +714,21 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 .online-status-fixed::after {
     content: '';
     position: absolute;
-    left: 20px;
-    width: 100px;
+    top: 0;
+    width: 150px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.2), transparent);
-    animation: capsule-wave-flow 2.5s infinite ease-in-out;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(57, 255, 20, 0.1) 20%, 
+        rgba(57, 255, 20, 0.4) 50%, 
+        rgba(57, 255, 20, 0.1) 80%, 
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: capsule-wave-flow 3s infinite ease-in-out;
     pointer-events: none;
+    filter: blur(5px);
 }
 
 .online-indicator {
