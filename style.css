@@ -660,36 +660,60 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     100% { box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14; opacity: .8; }
 }
 
+/* สถานะเริ่มต้น (ซ่อนและเป็นจุดเล็ก) */
 .online-status-fixed {
     position: fixed;
-    top: 10px;
+    top: -50px; /* ซ่อนไว้เหนือหน้าจอ */
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, .815); 
+    
+    /* ทรงแคปซูลเริ่มต้นขนาดเล็ก */
+    width: 80px; 
+    height: 30px;
+    background: rgba(0, 0, 0, 0.9); 
     color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 10px;
-    font-weight: 600;
+    border-radius: 50px;
+    
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
-    z-index: 900;
-    animation: slideDown 1s ease-out forwards;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    z-index: 2500;
+    font-size: 0; /* ซ่อนตัวอักษรตอนแรก */
     opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    
+    /* ใช้ bezier เพื่อความหน่วงแบบ iOS */
+    transition: 
+        top 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+        width 0.4s 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+        height 0.3s 0.3s,
+        opacity 0.3s,
+        font-size 0.2s 0.4s;
 }
 
+/* สถานะเมื่อกดหน้าจอ (ขยายออก) */
+.online-status-fixed.active {
+    top: 15px; /* สไลด์ลงมา */
+    width: 260px; /* ขยายออกซ้ายขวา */
+    height: 45px;
+    opacity: 1;
+    font-size: 11px; /* แสดงตัวอักษร */
+}
+
+/* ส่วนของไฟสถานะ */
 .online-indicator {
     display: inline-block;
     width: 10px;
     height: 10px;
     background-color: #39ff14; 
     border-radius: 50%;
-    border: 2px solid rgba(21, 255, 0, 0.5); 
-    box-shadow: 0 0 5px #39ff14, 0 0 12px #39ff14, 0 0 20px rgba(57, 255, 20, 0.8); 
-    animation: glow-flicker 2s infinite alternate ease-in-out;
+    box-shadow: 0 0 10px #39ff14;
+    flex-shrink: 0;
 }
+
 
 
 
