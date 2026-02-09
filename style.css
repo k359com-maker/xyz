@@ -708,24 +708,31 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     100% { width: 300%; height: 300%; opacity: 0; }
 }
 
-.top-right-badge {
+.social-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.top-left-badge {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 8px;
+    left: 10px;
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.05);
-    color: rgba(255, 255, 255, 0.3);  
-    padding: 4px 10px;
-    border-radius: 6px;
-    font-size: 10px;
+    gap: 5px;
+    color: rgba(255, 255, 255, 0.15);
+    font-size: 8px;
+    font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
     pointer-events: none;
+    z-index: 1;
 }
+
+.top-left-badge i {
+    font-size: 9px;
+}
+
 
 
 
