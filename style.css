@@ -684,12 +684,40 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     display: inline-block;
     width: 10px;
     height: 10px;
-    background-color: #39ff14; 
+    background: radial-gradient(circle at 35% 35%, #9fff8c, #26d313);
     border-radius: 50%;
-    border: 2px solid rgba(21, 255, 0, 0.5); 
-    box-shadow: 0 0 5px #39ff14, 0 0 12px #39ff14, 0 0 20px rgba(57, 255, 20, 0.8); 
-    animation: glow-flicker 2s infinite alternate ease-in-out;
+    position: relative;
+    box-shadow: 
+        0 0 2px rgba(0, 0, 0, 0.1),
+        0 0 10px rgba(57, 255, 20, 0.4);
+    animation: dynamic-island-pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
+
+.online-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background-color: #39ff14;
+    z-index: -1;
+    animation: live-alert-diffusion 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes dynamic-island-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); filter: brightness(1.2); }
+}
+
+@keyframes live-alert-diffusion {
+    0% { transform: scale(1); opacity: 0.8; }
+    40% { transform: scale(3); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+
 
 
 
