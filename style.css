@@ -657,24 +657,23 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 @keyframes energy-pulse {
     0%, 100% { 
         box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.4);
-        filter: brightness(1.1);
         transform: scale(1);
     }
     50% { 
         box-shadow: 0 0 20px #39ff14, 0 0 40px rgba(57, 255, 20, 0.7);
-        filter: brightness(1.5);
-        transform: scale(1.15);
+        transform: scale(1.1);
     }
 }
 
-@keyframes wave-expand {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(4); opacity: 0; }
+@keyframes capsule-wave-flow {
+    0% { transform: translateX(-20%) scaleX(0.5); opacity: 0; }
+    20% { opacity: 0.5; }
+    100% { transform: translateX(150%) scaleX(1.5); opacity: 0; }
 }
 
-@keyframes liquid-flow {
-    0% { transform: translateX(-100%) skewX(-15deg); }
-    100% { transform: translateX(100%) skewX(-15deg); }
+@keyframes ripple-out {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(5); opacity: 0; }
 }
 
 .online-status-fixed {
@@ -698,31 +697,15 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     overflow: hidden;
 }
 
-.online-status-fixed::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.15));
-    pointer-events: none;
-}
-
 .online-status-fixed::after {
     content: '';
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 60px;
+    left: 20px;
+    width: 100px;
     height: 100%;
-    background: linear-gradient(90deg, 
-        transparent, 
-        rgba(57, 255, 20, 0.1), 
-        rgba(57, 255, 20, 0.2), 
-        transparent);
-    filter: blur(5px);
-    animation: liquid-flow 3s infinite linear;
+    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.2), transparent);
+    animation: capsule-wave-flow 2.5s infinite ease-in-out;
+    pointer-events: none;
 }
 
 .online-indicator {
@@ -741,7 +724,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: rgba(57, 255, 20, 0.5);
+    background: rgba(57, 255, 20, 0.4);
     z-index: -1;
-    animation: wave-expand 2.5s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    animation: ripple-out 2s infinite cubic-bezier(0.23, 1, 0.32, 1);
 }
