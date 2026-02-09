@@ -1,13 +1,12 @@
-// ใส่ไว้ในไฟล์ .js ของคุณ หรือภายใต้ <script> ... </script>
+// ฟังก์ชันตรวจจับการคลิกทั้งหน้าจอ
 document.addEventListener('click', function() {
-    const statusIsland = document.querySelector('.online-status-fixed');
+    const statusBox = document.querySelector('.online-status-fixed');
     
-    // ตรวจสอบว่ามีคลาส active อยู่หรือยัง ถ้ายังให้เพิ่มเข้าไป
-    statusIsland.classList.add('active');
-
-    // (แนะนำเพิ่มเติม) ให้มันหดกลับเองหลังจากโชว์ไปแล้ว 5 วินาที
+    // สั่งให้เริ่ม Animation
+    statusBox.classList.add('active');
+    
+    // ตั้งเวลาให้หดกลับเองหลังจาก 4 วินาที (ถ้าต้องการ)
     setTimeout(() => {
-        statusIsland.classList.remove('active');
-    }, 5000); 
+        statusBox.classList.remove('active');
+    }, 4000);
 });
-
