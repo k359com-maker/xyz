@@ -655,25 +655,18 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 @keyframes energy-pulse {
-    0%, 100% { 
-        box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.4);
-        transform: scale(1);
-    }
-    50% { 
-        box-shadow: 0 0 20px #39ff14, 0 0 40px rgba(57, 255, 20, 0.7);
-        transform: scale(1.1);
-    }
-}
-
-@keyframes capsule-wave-flow {
-    0% { transform: translateX(-20%) scaleX(0.5); opacity: 0; }
-    20% { opacity: 0.5; }
-    100% { transform: translateX(150%) scaleX(1.5); opacity: 0; }
+    0%, 100% { box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 0 20px #39ff14, 0 0 40px rgba(57, 255, 20, 0.7); transform: scale(1.1); }
 }
 
 @keyframes ripple-out {
     0% { transform: scale(1); opacity: 0.7; }
-    100% { transform: scale(5); opacity: 0; }
+    100% { transform: scale(6); opacity: 0; }
+}
+
+@keyframes border-glow-run {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
 }
 
 .online-status-fixed {
@@ -681,42 +674,50 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: #000000;
-    color: #ffffff;
-    padding: 10px 24px;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    user-select: none;
+    animation: slideDown 1s ease-out forwards;
+}
+
+.main-capsule {
+    background: #000;
+    padding: 10px 25px;
     border-radius: 50px;
-    font-size: 11px;
-    font-weight: 700;
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    z-index: 999;
-    animation: slideDown 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-    opacity: 0;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    position: relative;
     overflow: hidden;
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
 }
 
-.online-status-fixed::after {
+/* คลื่นสีเขียวกระจายจากจุดวงกลมเต็มแคปซูล */
+.main-capsule::after {
     content: '';
     position: absolute;
-    left: 20px;
-    width: 100px;
+    left: 25px;
+    width: 2px;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.2), transparent);
-    animation: capsule-wave-flow 2.5s infinite ease-in-out;
-    pointer-events: none;
+    background: rgba(57, 255, 20, 0.3);
+    filter: blur(10px);
+    box-shadow: 0 0 40px 20px rgba(57, 255, 20, 0.2);
+    animation: border-glow-run 3s infinite linear;
+    opacity: 0.5;
 }
 
 .online-indicator {
-    display: inline-block;
     width: 10px;
     height: 10px;
     background: #39ff14;
     border-radius: 50%;
     position: relative;
     animation: energy-pulse 2s infinite ease-in-out;
-    z-index: 2;
 }
 
 .online-indicator::before {
@@ -724,7 +725,51 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    background: rgba(57, 255, 20, 0.4);
-    z-index: -1;
-    animation: ripple-out 2s infinite cubic-bezier(0.23, 1, 0.32, 1);
+    background: rgba(57, 255, 20, 0.5);
+    animation: ripple-out 2.5s infinite ease-out;
+}
+
+/* แผงหมวดหมู่ */
+.category-panel {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.9);
+    margin-top: 8px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(57, 255, 20, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.online-status-fixed.active .category-panel {
+    max-height: 200px;
+    opacity: 1;
+    padding: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(57, 255, 20, 0.1);
+}
+
+.category-item {
+    padding: 10px 15px;
+    color: #ccc;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.3s;
+    border-radius: 12px;
+}
+
+.category-item i {
+    color: #39ff14;
+    font-size: 14px;
+}
+
+.category-item:hover {
+    background: rgba(57, 255, 20, 0.1);
+    color: #fff;
+    transform: translateX(5px);
 }
