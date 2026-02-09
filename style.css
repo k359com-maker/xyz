@@ -655,14 +655,8 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 @keyframes energy-pulse {
-    0%, 100% { 
-        box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.4);
-        transform: scale(1);
-    }
-    50% { 
-        box-shadow: 0 0 20px #39ff14, 0 0 40px rgba(57, 255, 20, 0.7);
-        transform: scale(1.1);
-    }
+    0%, 100% { box-shadow: 0 0 12px #39ff14, 0 0 25px rgba(57, 255, 20, 0.4); transform: scale(1); }
+    50% { box-shadow: 0 0 20px #39ff14, 0 0 40px rgba(57, 255, 20, 0.7); transform: scale(1.1); }
 }
 
 @keyframes ripple-out {
@@ -670,12 +664,14 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     100% { transform: scale(5); opacity: 0; }
 }
 
+/* เอฟเฟกต์คลื่นวิ่งในแคปซูล */
 @keyframes wave-flow {
     0% { transform: translateX(-100%); opacity: 0; }
     50% { opacity: 0.3; }
     100% { transform: translateX(200%); opacity: 0; }
 }
 
+/* ตัวหุ้มทั้งหมด (Container) */
 .online-status-fixed {
     position: fixed;
     top: 15px;
@@ -689,22 +685,24 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     animation: slideDown 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
 }
 
+/* แคปซูลหลัก - ล็อคขนาดไว้ที่นี่ */
 .main-capsule {
     background: #000000;
     color: #ffffff;
-    padding: 10px 24px;
+    height: 40px; /* ล็อคความสูง */
+    width: 180px;  /* ล็อคความกว้าง */
     border-radius: 50px;
     font-size: 11px;
     font-weight: 700;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     position: relative;
-    overflow: hidden;
-    width: 180px; /* ล็อคขนาดความกว้างไว้ให้เท่าเดิม */
-    justify-content: center;
+    overflow: hidden; /* ให้คลื่นวิ่งอยู่แค่ในนี้ */
     z-index: 2;
+    border: 1px solid rgba(57, 255, 20, 0.1);
 }
 
 .main-capsule::after {
@@ -716,7 +714,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 .online-indicator {
-    display: inline-block;
     width: 10px;
     height: 10px;
     background: #39ff14;
@@ -734,26 +731,29 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     animation: ripple-out 2s infinite cubic-bezier(0.23, 1, 0.32, 1);
 }
 
+/* แผงหมวดหมู่ - แยกตัวออกมาให้ยืดลงข้างล่าง */
 .category-panel {
-    width: 160px; /* ให้เล็กกว่าแคปซูลหลักเล็กน้อยเพื่อให้ดูมีเลเยอร์ */
-    background: rgba(0, 0, 0, 0.9);
+    width: 160px; /* เล็กกว่าแคปซูลหลักนิดหน่อยเพื่อให้ดูมีมิติ */
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(10px);
     border-radius: 0 0 20px 20px;
     max-height: 0;
     opacity: 0;
     overflow: hidden;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-20px);
+    transform: translateY(-20px); /* ดึงขึ้นไปซ่อนหลังแคปซูล */
     border: 1px solid rgba(57, 255, 20, 0.1);
     border-top: none;
+    margin-top: -10px; /* ให้มันเชื่อมต่อกับแคปซูล */
 }
 
+/* เมื่อคลิกแล้วให้แผงยืดลงมา */
 .online-status-fixed.active .category-panel {
-    max-height: 250px;
+    max-height: 300px;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(10px); /* ผลักลงมา */
     padding: 10px 0;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
 .category-item {
@@ -764,13 +764,17 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     align-items: center;
     gap: 10px;
     transition: 0.3s;
+    text-decoration: none;
 }
 
 .category-item i {
     color: #39ff14;
+    width: 15px;
+    text-align: center;
 }
 
 .category-item:hover {
     background: rgba(57, 255, 20, 0.1);
-    transform: translateX(5px);
+    color: #39ff14;
+    padding-left: 25px;
 }
