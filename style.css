@@ -654,68 +654,82 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    background: #000000; 
+    background: #000000;
     color: #ffffff;
-    padding: 8px 18px;
+    height: 32px;
     border-radius: 50px;
     font-size: 11px;
     font-weight: 700;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    /* เพิ่มขอบเรืองแสงจางๆ ให้ตัวบาร์ดูเด่นออกมาจากพื้นหลัง */
-    border: 1px solid rgba(57, 255, 20, 0.2);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     z-index: 999;
-    animation: slideDown 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    cursor: pointer;
+    user-select: none;
+    overflow: hidden;
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    animation: island-expand 1.4s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.online-status-fixed:active {
+    transform: translateX(-50%) scale(0.92);
+}
+
+.online-indicator, 
+.online-status-fixed span {
+    opacity: 0;
+    animation: content-fade-in 0.6s ease-out 0.8s forwards;
 }
 
 .online-indicator {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     background: #39ff14;
     border-radius: 50%;
     position: relative;
-    /* แสงสะท้อนที่ตัวจุดให้ดูมีมิติ 3D */
-    box-shadow: inset -1px -1px 3px rgba(0,0,0,0.4);
+    box-shadow: 0 0 12px rgba(57, 255, 20, 0.8);
+    flex-shrink: 0;
 }
 
-/* สร้างชั้นแสงฟุ้งรอบตัวจุด */
-.online-indicator::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 50%;
-    background: #39ff14;
-    filter: blur(2px);
-    opacity: 0.6;
-    animation: breath 2.5s infinite ease-in-out;
-}
-
-/* สร้างวงแหวน Live Alert แบบกระจายตัว */
 .online-indicator::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    border: 2px solid #39ff14;
-    animation: live-wave 2.5s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    background: #39ff14;
+    animation: live-wave 2.8s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes breath {
-    0%, 100% { opacity: 0.4; filter: blur(2px); }
-    50% { opacity: 0.9; filter: blur(4px); transform: scale(1.2); }
+@keyframes island-expand {
+    0% { 
+        width: 32px; 
+        opacity: 0; 
+        transform: translate(-50%, -40px); 
+    }
+    30% { 
+        width: 32px; 
+        opacity: 1; 
+        transform: translate(-50%, 0); 
+    }
+    100% { 
+        width: 140px; 
+        opacity: 1; 
+        transform: translate(-50%, 0); 
+    }
+}
+
+@keyframes content-fade-in {
+    0% { opacity: 0; transform: translateY(5px); filter: blur(3px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 @keyframes live-wave {
-    0% { transform: scale(1); opacity: 0.8; }
-    100% { transform: scale(3.5); opacity: 0; }
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(3.8); opacity: 0; }
 }
 
-@keyframes slideDown {
-    0% { opacity: 0; transform: translate(-50%, -30px) scale(0.9); }
-    100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-}
 
 
 
