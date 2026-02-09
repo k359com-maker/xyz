@@ -660,52 +660,41 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     100% { box-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14; opacity: .8; }
 }
 
-/* --- สถานะเริ่มต้น (ซ่อนและเป็นทรงแคปซูลเล็ก) --- */
+/* --- สถานะเริ่มต้น: ซ่อนไว้ด้านบนและเป็นแคปซูลจิ๋ว --- */
 .online-status-fixed {
     position: fixed;
-    top: -60px; /* ซ่อนไว้ข้างบน */
+    top: -60px; /* ซ่อนไว้เหนือจอ */
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, 0.9); 
+    background: rgba(0, 0, 0, 0.9);
     color: #ffffff;
-    
-    /* ทรงแคปซูลเริ่มต้น */
-    width: 80px; 
+    width: 100px; /* ขนาดเริ่มต้นตอนเล็ก */
     height: 30px;
-    border-radius: 50px;
-    
+    border-radius: 50px; /* ทรงแคปซูล */
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    z-index: 2000;
-    font-size: 0px; /* ซ่อนตัวอักษรไว้ก่อน */
+    gap: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 10000; /* ให้อยู่หน้าสุด */
+    font-size: 0; /* ซ่อนตัวอักษรตอนแรก */
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
-    
-    /* Transition ให้เหมือน iPhone (สไลด์ลงมาก่อนแล้วค่อยขยาย) */
-    transition: 
-        top 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28), 
-        width 0.4s 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.2), 
-        height 0.3s 0.2s, 
-        opacity 0.3s,
-        font-size 0.2s 0.4s,
-        gap 0.2s 0.4s;
+    transition: all 0.6s cubic-bezier(0.18, 0.89, 0.32, 1.28); /* จังหวะ iPhone */
 }
 
-/* --- สถานะเมื่อ Active (สไลด์ลงมาและขยายออก) --- */
+/* --- สถานะเมื่อ Active: สไลด์ลงมาและขยายออกข้าง --- */
 .online-status-fixed.active {
     top: 15px; 
-    width: 260px; /* ขยายความกว้าง */
+    width: 260px; /* ขยายออกซ้ายขวา */
     height: 45px;
     opacity: 1;
-    font-size: 11px; /* แสดงตัวอักษร */
+    font-size: 11px;
     gap: 10px;
 }
 
-/* ไฟสถานะ */
+/* ไฟสถานะสีเขียว */
 .online-indicator {
     display: inline-block;
     width: 10px;
@@ -716,6 +705,8 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     flex-shrink: 0;
     animation: glow-flicker 2s infinite alternate ease-in-out;
 }
+
+
 
 
 
