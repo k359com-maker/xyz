@@ -649,123 +649,68 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     pointer-events: none;
 }
 
-/* ===== Animations ===== */
-
+/* ===== Entrance ===== */
 @keyframes slideDown {
-    0% {
-        opacity: 0;
-        transform: translate(-50%, -60px) scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: translate(-50%, 0) scale(1);
-    }
-}
-
-@keyframes soft-pulse {
-    0%, 100% {
-        box-shadow:
-            0 0 8px rgba(57,255,20,0.6),
-            0 0 18px rgba(57,255,20,0.4);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow:
-            0 0 16px rgba(57,255,20,0.9),
-            0 0 32px rgba(57,255,20,0.6);
-        transform: scale(1.15);
-    }
-}
-
-@keyframes glow-sweep {
-    0% { transform: translateX(-120%); opacity: 0; }
-    30% { opacity: 0.4; }
-    100% { transform: translateX(220%); opacity: 0; }
-}
-
-@keyframes ripple {
     from {
-        transform: scale(1);
-        opacity: 0.6;
+        opacity: 0;
+        transform: translate(-50%, -20px);
     }
     to {
-        transform: scale(4);
-        opacity: 0;
+        opacity: 1;
+        transform: translate(-50%, 0);
     }
 }
 
-/* ===== Main Capsule ===== */
+/* ===== Dot Pulse ===== */
+@keyframes dot-pulse {
+    0%, 100% {
+        box-shadow: 0 0 6px rgba(0,255,0,0.6);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(0,255,0,1);
+    }
+}
 
+/* ===== Capsule ===== */
 .online-status-fixed {
     position: fixed;
-    top: 18px;
+    top: 16px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 12px 28px;
 
-    background: rgba(10, 10, 10, 0.75);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    color: #eaffea;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-
+    padding: 8px 18px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #eaffea;
+
+    background: linear-gradient(
+        180deg,
+        rgba(20,20,20,0.95),
+        rgba(8,8,8,0.95)
+    );
 
     border-radius: 999px;
-    border: 1px solid rgba(57,255,20,0.25);
+    border: none; /* ❌ ไม่มีขอบเขียว */
 
     box-shadow:
-        0 0 0 1px rgba(57,255,20,0.08),
-        0 10px 35px rgba(0,0,0,0.8);
+        inset 0 0 12px rgba(0,255,0,0.12),
+        0 8px 24px rgba(0,0,0,0.7);
 
     z-index: 999;
     opacity: 0;
-    overflow: hidden;
-
-    animation: slideDown 1s cubic-bezier(.19,1,.22,1) forwards;
-    will-change: transform, opacity;
+    animation: slideDown .6s ease-out forwards;
 }
 
-/* ===== Glow Sweep ===== */
-
-.online-status-fixed::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent 30%,
-        rgba(57,255,20,0.18),
-        transparent 70%
-    );
-    animation: glow-sweep 3.5s infinite ease-in-out;
-    pointer-events: none;
-}
-
-/* ===== Indicator ===== */
-
+/* ===== Dot ===== */
 .online-indicator {
-    width: 9px;
-    height: 9px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: #39ff14;
-    position: relative;
-
-    animation: soft-pulse 2.2s infinite ease-in-out;
-}
-
-/* Ripple */
-
-.online-indicator::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: rgba(57,255,20,0.35);
-    animation: ripple 2.2s infinite cubic-bezier(.23,1,.32,1);
+    background: #00ff4c;
+    animation: dot-pulse 1.8s infinite ease-in-out;
 }
