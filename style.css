@@ -662,60 +662,60 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 
 .online-status-fixed {
     position: fixed;
-    top: 10px;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(0, 0, 0, .815); 
+    background: rgba(255, 255, 255, 0.03); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 10px;
-    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.5px;
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, .3);
-    z-index: 900;
-    animation: slideDown 1s ease-out forwards;
-    opacity: 0;
+    gap: 10px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .online-indicator {
     display: inline-block;
-    width: 10px;
-    height: 10px;
-    background: radial-gradient(circle at 35% 35%, #9fff8c, #26d313);
+    width: 8px;
+    height: 8px;
+    background: #39ff14;
     border-radius: 50%;
     position: relative;
     box-shadow: 
-        0 0 2px rgba(0, 0, 0, 0.1),
-        0 0 10px rgba(57, 255, 20, 0.4);
-    animation: dynamic-island-pulse 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        0 0 10px #39ff14, 
+        0 0 20px rgba(57, 255, 20, 0.4);
 }
 
-.online-indicator::before {
+.online-indicator::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: -4px;
     border-radius: 50%;
-    background-color: #39ff14;
-    z-index: -1;
-    animation: live-alert-diffusion 2.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+    background: rgba(57, 255, 20, 0.3);
+    filter: blur(4px);
+    animation: live-alert-glow 2s infinite ease-in-out;
 }
 
-@keyframes dynamic-island-pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.15); filter: brightness(1.2); }
+@keyframes live-alert-glow {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.8); opacity: 0; }
 }
 
-@keyframes live-alert-diffusion {
-    0% { transform: scale(1); opacity: 0.8; }
-    40% { transform: scale(3); opacity: 0; }
-    100% { transform: scale(1); opacity: 0; }
+@keyframes slideDown {
+    0% { transform: translate(-50%, -20px); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
 }
+
+
 
 
 
