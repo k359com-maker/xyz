@@ -753,3 +753,14 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
 }
 
 
+/* ใส่ต่อท้ายในแท็ก <style> เดิม */
+canvas { 
+    display: block; 
+    image-rendering: -webkit-optimize-contrast; 
+    pointer-events: none; /* เพื่อให้ยังกดปุ่มอื่นๆ บนหน้าเว็บได้ */
+    position: fixed; /* ให้ซองลอยทับทุกอย่าง */
+    top: 0;
+    left: 0;
+    z-index: 9998; /* อยู่ใต้ปุ่ม Click <3 เล็กน้อย */
+}
+
