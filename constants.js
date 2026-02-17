@@ -1,0 +1,1 @@
+const DISCORD_USER_ID='742692894292443187';const LANYARD_API_URL=`https://api.lanyard.rest/v1/users/${DISCORD_USER_ID}`;const texts=["N/A","REN"];let isMuted=!0;let textIndex=0,charIndex=0,isDeleting=!1
