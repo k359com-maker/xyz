@@ -642,7 +642,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     left: 1vw;
     bottom: 1vh;
     font-size: 5px;
-    color: rgba(255, 255, 255, .5);
+    color: rgba(255, 255, 255, .8);
     opacity: .4;
     z-index: 1000;
     font-family: 'Orbitron', sans-serif;
@@ -751,5 +751,6 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     z-index: -1;
     animation: ripple-out 3.5s infinite cubic-bezier(0.23, 1, 0.32, 1);
 }
+
 
 
