@@ -641,7 +641,7 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     position: fixed;
     left: 1vw;
     bottom: 1vh;
-    font-size: 5px;
+    font-size: 7px;
     color: rgba(255, 255, 255, .8);
     opacity: .4;
     z-index: 1000;
@@ -751,6 +751,3 @@ a, a:hover, button, button:hover, .mute-btn, .mute-btn:hover, .social-icon, .soc
     z-index: -1;
     animation: ripple-out 3.5s infinite cubic-bezier(0.23, 1, 0.32, 1);
 }
-
-
-
