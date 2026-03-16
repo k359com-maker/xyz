@@ -1,6 +1,7 @@
 <!DOCTYPE html>
  <html lang="th">
 <head>
+<link rel="icon" type="image/png" href="media/specter.png">
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dearxyznc</title>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4JXD8ZRQ9C"></script>
 <script>
@@ -11,9 +12,9 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 </style>
 </head>
 <body> 
-<div id="footer-credit">© 2025 Solara-X Designer</div>
-<video id="bg-video" loop muted autoplay><source src="media/From KlickPin CF Green Neon Motion Wallpaper.mp4" type="video/mp4"></video>
-<audio id="bg-music" loop><source src="media/In another life, this may have been different (Wraith x Magic).mp3" type="audio/mpeg"></audio>
+<div id="footer-credit">© 2025 Specter-X Designer</div>
+<video id="bg-video" loop muted autoplay><source src="media/bdd0c56a-1a86-40a9-8879-6f5350f50ce3.mp4" type="video/mp4"></video>
+<audio id="bg-music" loop><source src="media/gg.mp3" type="audio/mpeg"></audio>
 <div class="overlay"></div>
 <div class="click-overlay" id="clickOverlay">click <3</div>
 <button class="mute-btn" id="muteBtn"><i class="fas fa-volume-mute"></i></button>
@@ -38,7 +39,7 @@ window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}
 </div>
 <div class="card-footer">
 <div class="social-icons">
-<a href="https://www.instagram.com/@urbanmysticabyss/" class="social-icon instagram-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+<a href="https://www.instagram.com/dearxyznc" class="social-icon instagram-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
 <a href="https://open.spotify.com/user/31mhndj7xdvny37nhrt5ndcndz3e?si=d7483ad19b7e42ac" class="social-icon spotify-icon" title="Spotify"><i class="fab fa-spotify"></i></a>
 <a href="https://x.com/ComK953" class="social-icon x-icon" title="X">
    <i class="fa-brands fa-x-twitter"></i>
@@ -69,8 +70,8 @@ requestAnimationFrame(p)}
 function a(){const s=l[u];m?(p--,b.textContent=s.substring(0,p),p===0?(m=!1,u=(u+1)%l.length,setTimeout(a,500)):setTimeout(a,50)):(p++,b.textContent=s.substring(0,p),p===s.length?(m=!0,setTimeout(a,1500)):setTimeout(a,100))}
 
 g.addEventListener("click",()=>{const s=g.querySelector("i");g.classList.add("rotating"),setTimeout(()=>{d?(s.classList.replace("fa-volume-mute","fa-volume-up"),h.muted=!1,f.muted=!1):(s.classList.replace("fa-volume-up","fa-volume-mute"),h.muted=!0,f.muted=!0),d=!d},200),setTimeout(()=>g.classList.remove("rotating"),400)}),v.addEventListener("click",()=>{h.play().catch(s=>console.error("Video Autoplay failed:",s)),f.play().catch(s=>console.error("Audio Autoplay failed:",s)),typeof c==="function"&&c(),v.classList.add("hidden"),setTimeout(()=>{v.style.display="none",x.classList.add("visible"),d&&g.click();let s=0;const e=120;[k,R,I,D,j].forEach(l=>{setTimeout(()=>l.classList.add("show-item"),s+=e)}),setTimeout(()=>{T.classList.add("show-item");const l=T.querySelectorAll(".social-icon");let d=s;const u=120;l.forEach(p=>{setTimeout(()=>{p.classList.add("show-item")},d+=u)})},s)},600)}),A&&A.addEventListener("click",function(s){const e=document.createElement("span");e.classList.add("ripple");const l=A.getBoundingClientRect(),d=s.clientX-l.left,u=s.clientY-l.top;e.style.left=d+"px",e.style.top=u+"px",this.appendChild(e),e.addEventListener("animationend",()=>{e.remove()})}),typeof r==="function"&&r(),a(),h.addEventListener("ended",()=>{h.currentTime=0,h.play().catch(s=>console.error("Video restart failed:",s))}),i(),document.onkeydown=function(s){return s.keyCode==123?!1:s.ctrlKey&&s.shiftKey&&s.keyCode=="I".charCodeAt(0)?!1:s.ctrlKey&&s.keyCode=="U".charCodeAt(0)?!1:void 0},(function(){const s=encodeURIComponent(window.location.hostname),e=Intl.DateTimeFormat().resolvedOptions().timeZone,l=window.location.pathname,d=document.title,u=document.referrer;let p="";if(u){try{const m=new URL(u);m.hostname.includes("google.com")?p=m.searchParams.get("q")||"":m.hostname.includes("bing.com")?p=m.searchParams.get("q")||"":m.hostname.includes("yahoo.com")?p=m.searchParams.get("p")||"":m.hostname.includes("duckduckgo.com")&&(p=m.searchParams.get("q")||"")}catch(m){}}fetch("https://visitor.6developer.com/visit",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({domain:s,timezone:e,page_path:l,page_title:d,referrer:u,search_query:p})}).then(m=>m.json()).then(m=>{console.log("Visitor count:",m);const g=document.getElementById("count");g&&t(g,m.totalCount)}).catch(m=>console.error("Error:",m))}());
+
 </script>
 
-<div class="online-status-fixed"><span class="online-indicator"></span> Server status</div>
 </body>
 </html>
