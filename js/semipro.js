@@ -1,1 +1,0 @@
-document.onkeydown=function(c){return c.keyCode==123?!1:c.ctrlKey&&c.shiftKey&&c.keyCode==73?!1:c.ctrlKey&&c.keyCode==85?!1:void 0};
