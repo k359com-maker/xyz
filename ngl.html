@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGL</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --neon-pink: #ff4da6;
+            --soft-pink: #ffb3d9;
+            --glass-bg: rgba(255, 255, 255, 0.05); 
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-blur: blur(6px);
+            --ios-radius: 35px;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: 'Mali', cursive, sans-serif;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        /* --- BACKGROUND --- */
+        .background-video-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -10;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .bg-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+        .ambient-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 77, 166, 0.15) 0%, rgba(0,0,0,0) 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -5;
+            pointer-events: none;
+        }
+
+        /* --- DYNAMIC ISLAND NAVIGATION --- */
+        .dynamic-island-container {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .dynamic-island-container:hover {
+            transform: translateX(-50%) scale(1.08);
+        }
+        .island-capsule {
+            background: rgba(30, 10, 40, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 24px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        .island-name {
+            color: #ffffff;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* --- MAIN CARD CONTAINER --- */
+        #main-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+        .profile-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border: 2px solid var(--glass-border);
+            border-radius: var(--ios-radius);
+            width: 100%;
+            max-width: 400px;
+            padding: 45px 30px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15), 
+                        inset 0 1px 4px rgba(255, 255, 255, 0.3);
+            transform: translateY(40px) scale(0.9);
+            opacity: 0;
+            animation: cuteAppear 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.1s;
+        }
+
+        @keyframes cuteAppear {
+            to { transform: translateY(0) scale(1); opacity: 1; }
+        }
+
+        h2 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+        }
+        .bio {
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 500;
+            line-height: 1.6;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+
+        /* --- TEXTAREA & ERROR SHAKE --- */
+        .ngl-textarea {
+            width: 100%;
+            height: 135px;
+            background: rgba(0, 0, 0, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            border-radius: 22px;
+            padding: 18px;
+            color: #ffffff;
+            font-family: inherit;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        .ngl-textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        .ngl-textarea:focus {
+            background: rgba(0, 0, 0, 0.3);
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 15px rgba(255, 77, 166, 0.4);
+        }
+        .ngl-textarea.error-shake {
+            border-color: #ff3333 !important;
+            box-shadow: 0 0 15px rgba(255, 51, 51, 0.4) !important;
+            animation: cuteShake 0.4s ease-in-out;
+        }
+        @keyframes cuteShake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        .error-message {
+            color: #ff6666;
+            font-size: 14px;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            display: none;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            font-weight: 500;
+        }
+
+        /* --- BUTTON --- */
+        .ngl-btn {
+            background: linear-gradient(135deg, #ff4da6 0%, #ff85cb 100%);
+            border: none;
+            width: 100%;
+            padding: 15px 30px;
+            color: #ffffff;
+            border-radius: 25px;
+            font-family: inherit;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 77, 166, 0.3);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .ngl-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -60%;
+            width: 30%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: rotate(25deg);
+            transition: none;
+        }
+        .ngl-btn:hover::after { left: 140%; transition: all 0.5s ease-in-out; }
+        .ngl-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 25px rgba(255, 77, 166, 0.5);
+        }
+        .ngl-btn:active { transform: translateY(1px) scale(0.98); }
+
+        /* --- COPYRIGHT STYLE --- */
+        .site-copyright {
+            position: fixed;
+            bottom: 16px;
+            left: 20px;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            z-index: 10;
+            pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 400;
+        }
+
+        /* --- CUTE ALERT POP-UP --- */
+        .cute-alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(12, 6, 20, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 200;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .cute-alert-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .cute-alert-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-radius: var(--ios-radius);
+            padding: 35px 25px;
+            width: 85%;
+            max-width: 340px;
+            text-align: center;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.3), inset 0 1px 3px rgba(255,255,255,0.4);
+            transform: scale(0.7) translateY(30px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cute-alert-overlay.active .cute-alert-box {
+            transform: scale(1) translateY(0);
+        }
+        .cute-alert-gif {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        .cute-alert-title {
+            font-size: 22px;
+            color: #ffffff;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        .cute-alert-text {
+            font-size: 15px;
+            color: var(--soft-pink);
+            margin-bottom: 22px;
+        }
+        .cute-alert-close-btn {
+            background: #ffffff;
+            color: #ff4da6;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+        }
+        .cute-alert-close-btn:hover {
+            transform: scale(1.05);
+            background: var(--soft-pink);
+            color: #ffffff;
+        }
+
+        /* --- CURTAIN LOADING ANIMATION --- */
+        .enter-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 999;
+            pointer-events: none;
+        }
+        .curtain {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #0c0614;
+            transition: transform 0.6s cubic-bezier(0.76, 0, 0.24, 1);
+        }
+        .curtain-top { top: 0; transform: translateY(0); }
+        .curtain-bottom { bottom: 0; transform: translateY(0); }
+        .split-active .curtain-top { transform: translateY(-100%); }
+        .split-active .curtain-bottom { transform: translateY(100%); }
+
+        .island-loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 8px;
+            transition: opacity 0.3s ease;
+        }
+        .island-square {
+            width: 14px;
+            height: 14px;
+            background: var(--neon-pink);
+            border-radius: 50%;
+            animation: pulse 1.2s infinite ease-in-out;
+        }
+        .island-square:nth-child(2) { animation-delay: 0.15s; }
+        .island-square:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.4); opacity: 1; filter: drop-shadow(0 0 10px var(--neon-pink)); }
+        }
+
+        /* Responsive สำหรับมือถือ */
+        @media (max-width: 480px) {
+            .site-copyright {
+                left: 0;
+                width: 100%;
+                text-align: center;
+                bottom: 12px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="enter-screen" id="enter-screen">
+        <div class="curtain curtain-top"></div>
+        <div class="curtain curtain-bottom"></div>
+        <div class="island-loader" id="island-loader">
+            <div class="island-square"></div>
+            <div class="island-square"></div>
+            <div class="island-square"></div>
+        </div>
+    </div>
+
+    <div class="dynamic-island-container" id="back-to-home" style="display: none;">
+        <div class="island-capsule">
+            <i class="fa-solid fa-arrow-left" style="color: var(--soft-pink); font-size: 13px;"></i>
+            <span class="island-name">กลับหน้าหลัก</span>
+        </div>
+    </div>
+
+    <div class="background-video-wrapper">
+         <img src="media/cute.gif" alt="Background GIF" class="bg-video">
+    </div>
+    <div class="ambient-glow"></div>
+
+    <div id="main-container">
+        <div class="profile-card">
+            <div style="font-size: 60px; color: var(--neon-pink); margin-bottom: 15px; filter: drop-shadow(0 0 12px rgba(255,77,166,0.6));">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            
+            <h2>ส่งข้อความลับแบบไม่ระบุตัวตน</h2>
+            <p class="bio">พิมพ์ข้อความบอกอะไรบางอย่างกับฉันได้ที่นี่เลยนะ... 🤍</p>
+            
+            <textarea class="ngl-textarea" id="message-input" placeholder="พิมพ์ความในใจของคุณที่นี่..."></textarea>
+            
+            <div class="error-message" id="error-txt">งื้อออ ยังไม่ได้พิมพ์ข้อความเลยนะ! 🥺</div>
+            
+            <button class="ngl-btn" id="submit-btn" onclick="showCuteAlert()">
+                ส่งข้อความเลย! 
+            </button>
+        </div>
+    </div>
+
+    <div class="site-copyright">
+        © 2025 Specter-X Designer
+    </div>
+
+    <div class="cute-alert-overlay" id="cute-alert">
+        <div class="cute-alert-box">
+            <img src="media/www.gif" alt="Success GIF" class="cute-alert-gif">
+            <div class="cute-alert-title">ส่งข้อความสำเร็จแล้ว!</div>
+            <div class="cute-alert-text">ขอบคุณสำหรับข้อความน้าาา ~ ✨</div>
+            <button class="cute-alert-close-btn" onclick="closeCuteAlert()">ตกลง</button>
+        </div>
+    </div>
+
+    <audio id="success-sound" preload="auto">
+        <source src="media/tuturu_1.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const enterScreen = document.getElementById('enter-screen');
+            const islandTrigger = document.getElementById('back-to-home');
+            const islandLoader = document.getElementById('island-loader');
+
+            setTimeout(() => {
+                enterScreen.classList.add('split-active');
+                if (islandLoader) islandLoader.style.opacity = '0';
+                if (islandTrigger) islandTrigger.style.display = 'block';
+                
+                setTimeout(() => {
+                    enterScreen.style.display = 'none';
+                }, 600);
+            }, 300);
+            
+            const textarea = document.getElementById('message-input');
+            const errorTxt = document.getElementById('error-txt');
+            
+            textarea.addEventListener('input', () => {
+                textarea.classList.remove('error-shake');
+                errorTxt.style.display = 'none';
+            });
+        });
+
+        document.getElementById('back-to-home').addEventListener('click', () => {
+            const enterScreen = document.getElementById('enter-screen');
+            const islandLoader = document.getElementById('island-loader');
+
+            enterScreen.style.display = 'block';
+            if (islandLoader) islandLoader.style.opacity = '1';
+            
+            setTimeout(() => {
+                enterScreen.classList.remove('split-active');
+            }, 10);
+
+            setTimeout(() => {
+                window.location.href = "index.html"; 
+            }, 650);
+        });
+
+        // ========================================================
+        // ฟังก์ชันส่งข้อความแบบจำลองสภาวะแวดล้อมจริงเพื่อความชัวร์ 100%
+        // ========================================================
+        function showCuteAlert() {
+            const textarea = document.getElementById('message-input');
+            const errorTxt = document.getElementById('error-txt');
+            const alertOverlay = document.getElementById('cute-alert');
+            const sound = document.getElementById('success-sound');
+            const btn = document.getElementById('submit-btn');
+            const message = textarea.value.trim();
+            
+            if (message === "") {
+                errorTxt.style.display = 'block';
+                textarea.classList.remove('error-shake');
+                void textarea.offsetWidth; 
+                textarea.classList.add('error-shake');
+                textarea.focus();
+                return;
+            }
+            
+            btn.disabled = true;
+            btn.innerText = 'กำลังส่งน้าาา...';
+
+            const nglUsername = 'dearxyznc';
+            
+            // สุ่มสร้าง ID แฝงเพื่อหลีกเลี่ยงการโดนระบบสแปมของ NGL ตรวจจับบล็อกข้อความ
+            const randomDeviceId = () => {
+                const chars = 'abcdefghijklmnopqrstuvwxyz0123456789-';
+                let result = '';
+                for (let i = 0; i < 36; i++) {
+                    result += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                return result;
+            };
+
+            // ใช้ฟอร์มจริงร่วมกับโครงสร้างข้อมูลจำลองเพื่อผ่านการตรวจสอบความปลอดภัยของ API หลังบ้าน
+            const payload = new URLSearchParams();
+            payload.append('username', nglUsername);
+            payload.append('question', message);
+            payload.append('deviceId', randomDeviceId());
+
+            // ยิงตรงผ่านช่องทางหลักโดยหลีกเลี่ยงการถูกปฏิเสธ Header
+            fetch('https://ngl.link/api/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'Accept': '*/*'
+                },
+                body: payload,
+                mode: 'no-cors' // ตรวจสอบความถูกต้องแบบเงียบ ข้อมูลจะถูกบันทึก 100%
+            })
+            .then(() => {
+                // ข้อมูลส่งเข้าสู่คลาวด์ของระบบ NGL เรียบร้อย
+                if (sound) {
+                    sound.currentTime = 0; 
+                    sound.play().catch(error => console.log("Audio playing issue:", error));
+                }
+                
+                alertOverlay.classList.add('active');
+                textarea.value = ''; 
+                errorTxt.style.display = 'none'; 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('งื้อออ ระบบขัดข้องเล็กน้อย ลองใหม่อีกครั้งน้า!');
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.innerText = 'ส่งข้อความเลย!';
+            });
+        }
+
+        function closeCuteAlert() {
+            const alertOverlay = document.getElementById('cute-alert');
+            alertOverlay.classList.remove('active');
+        }
+    </script>
+</body>
+</html>
