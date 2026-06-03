@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solara X</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="enter-screen" id="enter-screen">
+        <div class="curtain curtain-top" id="curtain-top"></div>
+        <div class="curtain curtain-bottom" id="curtain-bottom"></div>
+        
+        <h1 class="enter-text" id="enter-text">&lt;3</h1>
+
+        <div class="loader-container" id="loader-container" style="display: none;">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="square"></div>
+        </div>
+
+        <div class="island-loader" id="island-loader" style="display: none;">
+            <div class="island-square"></div>
+            <div class="island-square"></div>
+            <div class="island-square"></div>
+        </div>
+    </div>
+
+    <div class="dynamic-island-container" id="island-trigger" style="display: none;">
+        <div class="island-capsule">
+            <div class="island-left">
+                <img src="media/2785-kuromisinging.gif" alt="Logo" class="island-logo" onerror="this.src='media/2785-kuromisinging.gif'">
+            </div>
+            <div class="island-right">
+                <span class="island-name">NGL - q&a</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="background-video-wrapper">
+         <video autoplay loop muted playsinline class="bg-video">
+               <source src="media/ddddw.mp4" type="video/mp4">
+         </video>
+    </div>
+
+    <audio id="main-audio" src=""></audio>
+
+    <div class="container" id="main-container" style="display: none;">
+        
+        <div class="profile-card animate-card-1">
+            <div class="profile-main-content">
+                <div class="avatar">
+                    <img src="media/Picsart_26-02-09_04-46-33-604.jpg" alt="Profile">
+                </div>
+                <div class="profile-info">
+                    <div class="name-badge-row">
+                        <div class="username">
+                            <span id="typewriter"></span><span class="cursor">|</span>
+                        </div>
+                        <div class="badge-capsule">
+                            <img src="media/97020-owner.png" alt="Badge 1" class="badge-icon">
+                            <img src="media/44646-developer.png" alt="Badge 2" class="badge-icon">
+                            <img src="media/85618-verified.png" alt="Badge 3" class="badge-icon">
+                            <img src="media/specter.png" alt="Badge 4" class="badge-icon">
+                        </div>
+                    </div>
+                    <p class="bio">idk</p>
+                    <p class="joined">17 years agooooo</p>
+                </div>
+            </div>
+            
+            <div class="profile-footer">
+                <div class="stat">
+                    <i class="fa-solid fa-eye"></i>
+                    <span id="view-count">รอ api</span>
+                </div>
+                <span class="footer-divider">|</span>
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Bangkok, Thailand</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="music-card animate-card-2">
+            <div class="music-thumb">
+                <img src="" alt="Album Art" id="album-art">
+            </div>
+            
+            <div class="music-body">
+                <div class="music-info">
+                    <span id="song-title" class="song-title">Loading...</span>
+                </div>
+                
+                <div class="progress-wrapper">
+                    <span class="time" id="current-time">0:00</span>
+                    <div class="progress-bar" id="progress-bar-click">
+                        <div class="progress" id="progress-line"></div>
+                    </div>
+                    <span class="time" id="duration-time">0:00</span>
+                </div>
+            </div>
+            
+            <div class="music-controls">
+                <i class="fa-solid fa-backward-step" id="prev-btn"></i>
+                <i class="fa-solid fa-play" id="play-btn"></i>
+                <i class="fa-solid fa-forward-step" id="next-btn"></i>
+            </div>
+        </div>
+         
+        <div class="ios-social-dock animate-card-3">
+             <a href="https://github.com" target="_blank" class="social-btn github">
+                <i class="fa-brands fa-github"></i>
+                <span class="social-text">GitHub</span>
+             </a>
+             <a href="https://www.instagram.com/unknownwithoutnameee" target="_blank" class="social-btn instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <span class="social-text">Instagram</span>
+             </a>
+             <a href="https://discord.gg/VF2ckBnzxS" target="_blank" class="social-btn discord">
+                <i class="fa-brands fa-discord"></i>
+                <span class="social-text">Discord</span>
+             </a>
+             <a href="https://www.facebook.com/www.specterx.xyz" target="_blank" class="social-btn facebook">
+                <i class="fa-brands fa-facebook"></i>
+                <span class="social-text">Facebook</span>
+             </a>
+        </div>
+         
+    </div> 
+    
+    <script src="js/loader.js"></script>
+    <script src="js/script.js"></script>
+
+        <div class="copyright">
+    © 2025 Specter-X Designer
+    </div>
+
+</body>
+</html>
