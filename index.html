@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="th" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <!-- FontAwesome สำหรับไอคอน -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- เชื่อมโยงไฟล์ CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="footer-copyright">© 2026 SPACTERX</div>
+
+    <!-- ปุ่มสลับธีม (Dark / Light Mode) -->
+    <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Theme">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+    </button>
+
+    <!-- พื้นหลังวิดีโอ -->
+    <div class="background-video-wrapper">
+         <video autoplay loop muted playsinline class="bg-video">
+               <source src="media/ddddw.mp4" type="video/mp4">
+         </video>
+    </div>
+
+    <!-- แคนวาสสำหรับเอฟเฟกต์หิมะชมพูอมแดง -->
+    <canvas id="snow-canvas"></canvas>
+
+    <!-- คอนเทนเนอร์หลัก -->
+    <div class="container" id="main-container">
+        
+        <!-- การ์ดโปรไฟล์ -->
+        <div class="profile-card">
+            <div class="profile-main-content">
+                <div class="avatar">
+                    <img src="media/fff.jpg" alt="Profile">
+                </div>
+                <div class="profile-info">
+                    <div class="name-badge-row">
+                        <div class="username">
+                            <span>rensemipro</span>
+                        </div>
+                        <div class="badge-capsule">
+                            <img src="media/85618-verified.png" alt="Badge" class="badge-icon">
+                        </div>
+                    </div>
+                    <p class="bio">i don't know.</p>
+                    <p class="joined">Joined over 13 years ago</p>
+                </div>
+            </div>
+            
+            <div class="profile-footer">
+                <div class="stat">
+                    <i class="fa-solid fa-eye"></i>
+                    <span id="view-count">Loading...</span>
+                </div>
+                <span class="footer-divider">|</span>
+                <div class="location">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>Th, Bangkok</span>
+                </div>
+            </div>
+        </div>
+         
+    </div> 
+
+<!-- Navigation Tabs Animation -->
+<nav class="nav-tabs-container" id="nav-container-box">
+    <ul class="nav-tabs-list" id="nav-tabs">
+        <div class="nav-indicator" id="nav-indicator"></div>
+        <li class="nav-item active" data-index="0">
+            <a href="https://www.instagram.com/userunknown0828" target="_blank" class="nav-link">
+                <i class="fa-brands fa-instagram"></i>
+                <span class="nav-label">Instagram</span>
+            </a>
+        </li>
+        <li class="nav-item" data-index="1">
+            <a href="https://tiktok.com/@rensemipro" target="_blank" class="nav-link">
+                <i class="fa-brands fa-tiktok"></i>
+                <span class="nav-label">TikTok</span>
+            </a>
+        </li>
+        <li class="nav-item" data-index="2">
+            <a href="https://discord.gg/zC8EZwgrv7" target="_blank" class="nav-link">
+                <i class="fa-brands fa-discord"></i>
+                <span class="nav-label">Discord</span>
+            </a>
+        </li>
+        <li class="nav-item" data-index="3">
+            <a href="https://spacterx.syncxs.xyz/" target="_blank" class="nav-link">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="nav-label">Website</span>
+            </a>
+        </li>
+        <li class="nav-item" data-index="4">
+            <a href="https://open.spotify.com/" target="_blank" class="nav-link">
+                <i class="fa-brands fa-spotify"></i>
+                <span class="nav-label">Spotify</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+    
+    <!-- เชื่อมโยงไฟล์ JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
