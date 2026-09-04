@@ -397,28 +397,21 @@ body::after {
     bottom: 5px;
     left: 50%;
     transform: translateX(-50%);
-    color: rgb(255, 91, 167);
+    color: rgb(255, 0, 136);
     font-size: 11px;
     font-family: sans-serif;
     letter-spacing: 0.5px;
     pointer-events: none;
     z-index: 10;
-    white-space: nowrap; /* ป้องกันไม่ให้ข้อความถูกตัดขึ้นบรรทัดใหม่ */
+    white-space: nowrap;
 }
 
-/* รองรับหน้าจอมือถือและจอขนาดเล็ก */
+/* รองรับหน้าจอมือถือและจอขนาดเล็ก ให้จัดกึ่งกลางและเว้นระยะจากขอบล่างพอดี */
 @media screen and (max-width: 768px) {
     .footer-copyright {
         bottom: 5px;
-        font-size: 8px;
-    }
-}
-
-/* รองรับหน้าจอมือถือและจอขนาดเล็ก ให้ชิดติดมุมล่างซ้ายสุด */
-@media screen and (max-width: 768px) {
-    .footer-copyright {
-        bottom: 0px;
-        left: 0px;
+        left: 50%;
+        transform: translateX(-50%);
         font-size: 8px;
     }
 }
