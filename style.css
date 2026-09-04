@@ -43,6 +43,14 @@
     transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease;
 }
 
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
 body {
     min-height: 100vh;
     display: flex;
@@ -370,7 +378,7 @@ body {
     text-decoration: none;
 }
 
-/* แสงเรืองรองสีน้ำเงินขยายกว้างเกือบเต็มจอจากมุมล่างซ้าย */
+/* แสงเรืองรองขยายกว้างเกือบเต็มจอจากมุมล่างซ้าย */
 body::after {
     content: '';
     position: fixed;
@@ -384,6 +392,7 @@ body::after {
     filter: blur(80px);
 }
 
+/* ข้อความลิขสิทธิ์ชิดขอบซ้ายล่างสุด (0px) */
 .footer-copyright {
     position: fixed;
     bottom: 0px;
@@ -401,6 +410,6 @@ body::after {
     .footer-copyright {
         bottom: 0px;
         left: 0px;
-        font-size: 8px; /* ปรับขนาดให้พอดี ไม่เล็กเกินไปจนมองไม่เห็น */
+        font-size: 8px;
     }
 }
