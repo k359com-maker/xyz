@@ -46,18 +46,17 @@
 html, body {
     width: 100%;
     height: 100%;
+    height: 100dvh; /* ป้องกันปัญหาแถบเบราว์เซอร์มือถือดันหน้าจอหรือบังเนื้อหา */
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden; /* ป้องกันการเลื่อนหน้าจอที่ทำให้ตกขอบ */
 }
 
 body {
-    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     background: var(--bg-color);
-    overflow: hidden;
     position: relative;
     perspective: 1000px;
 }
@@ -136,7 +135,7 @@ body {
     z-index: 10;
     padding: 20px;
     transform-style: preserve-3d;
-    margin-bottom: 60px;
+    margin-bottom: 0px; /* เอาออกเพราะจัดกึ่งกลางด้วย Flexbox แล้ว */
     
     opacity: 0;
     transform: translateY(40px) scale(0.95);
@@ -249,7 +248,7 @@ body {
 /* Navigation Tabs Animation */
 .nav-tabs-container {
     position: fixed;
-    bottom: 15px;
+    bottom: 25px; /* ยกขึ้นมาเล็กน้อยเพื่อไม่ให้แถบเบราว์เซอร์มือถือบัง */
     left: 50%;
     transform: translateX(-50%) translateY(50px);
     z-index: 1000;
@@ -341,7 +340,7 @@ body {
     .container {
         padding: 10px;
         max-width: 100%;
-        margin-bottom: 80px;
+        margin-bottom: 20px;
     }
     
     .profile-card {
@@ -362,8 +361,8 @@ body {
     }
 
     .nav-tabs-container {
-        bottom: 10px;
-        width: 95%;
+        bottom: 20px; /* ลอยพ้นแถบเครื่องมือล่างของมือถือ */
+        width: 92%;
     }
 }
 
