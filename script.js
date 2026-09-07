@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
                 this.drift = Math.random() * 1.5 + 0.5;
-                this.opacity = Math.random() * 0.6 + 0.3;
+                this.opacity = Math.random() * 0.10 + 0.3;
                 
                 const colors = [
                     'rgba(255, 150, 180, ',
