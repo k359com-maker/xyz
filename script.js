@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         viewCountSpan.innerText = data.count.toLocaleString();
                     })
                     .catch(() => {
-                        viewCountSpan.innerText = '4,198';
+                        viewCountSpan.innerText = '5,555';
                     });
             });
     }
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ctx = canvas.getContext('2d');
 
         let particles = [];
-        const particleCount = 75;
+        const particleCount = 50;
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     this.radius = Math.random() * 1.5 + 0.8;
                     this.speed = Math.random() * 2.5 + 1.8;
                 } else {
-                    this.radius = Math.random() * 1.5 + 2.0;
+                    this.radius = Math.random() * 1.0 + 1.5;
                     this.speed = Math.random() * 1.0 + 0.6;
                 }
 
